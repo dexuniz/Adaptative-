@@ -1,0 +1,3913 @@
+\documentclass[11pt,a4paper]{amsart}
+
+
+%% package
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+%\usepackage[dvips]{graphicx}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts,amssymb, amsbsy}
+\usepackage{multicol} 
+\usepackage{stmaryrd}
+\usepackage{longtable}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+
+
+%\usetikzlibrary{arrows}
+
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\usepackage{color}
+\long\def\red#1{\textcolor {red}{#1}}
+\long\def\blue#1{\textcolor {blue}{#1}}
+
+
+\theoremstyle{theorem}
+\newtheorem{thm}{Th\'eor\`eme}
+\newtheorem{lemmme}[thm]{Lemme}
+
+\newtheorem{theoreme}[thm]{Th\'eor\`eme}
+\newtheorem*{theorem*}{Th\'eor\`eme}
+\newtheorem{proposition}[thm]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}[thm]{D\'efinition}
+\newtheorem{remarque}[thm]{Remarque}
+\newtheorem{exemple}[thm]{Exemple}
+\newtheorem{corollaire}[thm]{Corollaire}
+\newtheorem*{attention}{Mise en garde}
+
+\newtheorem{notation}[thm]{Notation}
+
+
+\newcommand{\coeur}{$\heartsuit$}
+\newcommand{\ccoeur}{$\heartsuit\heartsuit$}
+\newcommand{\trefle}{$\clubsuit$}
+\newcommand{\ttrefle}{$\clubsuit\clubsuit$}
+
+\newenvironment{preuve}{\smallskip\noindent\emph{\textbf{Preuve.}}\hspace{1pt}}%
+ {\hspace{-5pt}{\nobreak\quad\nobreak\hfill\nobreak$\square$\vspace{8pt}%
+ \par}\smallskip\goodbreak}
+%% macro
+
+
+\DeclareMathOperator{\dimension}{dim}
+\DeclareMathOperator{\kernel}{ker}
+\DeclareMathOperator{\image}{image}
+
+
+
+
+
+
+
+
+
+
+\def\norm#1{\Vert #1 \Vert }
+\def\scal#1{\langle #1\rangle}
+
+
+
+
+
+\def\siecle#1{\textsc{\romannumeral #1}\textsuperscript{e}~siècle}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\module}[1]{\vert #1 \vert}
+%\frenchbsetup{StandardItemLabels}
+
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+
+
+
+\newcommand{\dd}{d}
+
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\RR{{\mathbb R}}
+\def\CC{{\mathbb C}}
+\def\QQ{{\mathbb Q}}
+
+\def\PP{{\mathbb P}}
+\def\EE{{\mathbb E}}
+%\def\S{{\mathbb S}}
+%\def\O{{\mathbb O}}
+%\def\F{{\mathbb F}}
+%\def\K{{\mathbb K}}
+%\def\M{{\mathcal M}}
+%\def\S{{\mathfrak{S}}}
+%\def\A{{\mathfrak{A}}}
+%\def\U{{\mathbb{U}}}
+%\def\ZN{{$\Z/n\Z$}\xspace}
+%\def\eps{\varepsilon}
+%\def\codim{\mathrm{codim}}
+\def\card{\mathrm{Card}}
+%\def\rg{\mathrm{rg}}
+%\newcommand{\cqfd}{\hfill $\square$ \medskip}
+%\newcommand{\re}{\Re\mathrm{e}}
+%\newcommand{\im}{\mathrm{Im}}
+%\newcommand{\ch}{\mathrm{ch}}
+%\newcommand{\sh}{\mathrm{sh}}
+%\newcommand{\tth}{\mathrm{th}}
+%\newcommand{\tq}{~/~}
+
+
+
+%%compteurs
+%\setlength{\parindent}{0pt}
+\newcounter{numExercice}
+\newcounter{NumPartie}
+\newcounter{qcounter}
+\newcounter{qscounter}
+\setcounter{numExercice}{0}
+\setcounter{NumPartie}{0}
+\setcounter{qcounter}{0}
+\setcounter{qscounter}{0}
+
+
+
+%%Exercices, problemes, questions
+\newcommand{\questiondecours}[1]{\setcounter{qcounter}{0}\vspace{.5cm}\hangindent0em\hangafter=0%
+\noindent\textbf{Question de cours.}~}
+
+\newcommand{\exercicesansnumero}[1]{\setcounter{qcounter}{0}\vspace{.5cm}\hangindent0em\hangafter=0%
+\noindent\textbf{Exercice.}~}
+
+\newcommand{\exo}[2]{\stepcounter{numExercice}\setcounter{qcounter}{0}\vspace{.3cm}\hangindent0em\hangafter=0%
+\noindent{\textbf{Exercice \arabic{numExercice} (#2).} \textit{#1}}}
+
+
+\newcommand{\exosd}[1]{\stepcounter{numExercice}\setcounter{qcounter}{0}\vspace{.3cm}\hangindent0em\hangafter=0%
+\noindent{\textbf{Exercice \arabic{numExercice}.} \textit{#1}}}
+
+\newcommand{\pb}[1]{\stepcounter{numExercice}
+\setcounter{NumPartie}{0}\setcounter{qcounter}{0}\vspace{.6cm}
+\noindent\textbf{Problème  \arabic{numExercice}.}
+{\textit{{#1}}}
+}
+
+\newcommand{\partie}[1]{
+\stepcounter{NumPartie}\setcounter{qcounter}{0}
+\vspace{.3cm}
+\begin{center}
+\textbf{Partie \Roman{NumPartie}. #1}
+\end{center}
+}
+
+
+%\newcommand{\solution}[1]{\ifx\withsolution\undefined\else{\bigskip \noindent\it {\bf Solution~: }#1\cqfd}\fi}
+
+%\newcommand{\exercice}[1]{\subsection{#1}\setcounter{qcounter}{0}}
+
+\newenvironment{question}
+{
+  \stepcounter{qcounter}
+  \setcounter{qscounter}{0}
+  \vspace{.3cm}
+  \hangindent1em
+  \hangafter=0
+  {\noindent(\arabic{qcounter}) }
+}%
+{
+}
+
+\newenvironment{squestion}
+{%
+  \stepcounter{qscounter}%
+  \hangindent3em%
+  \hangafter=0%
+  \vspace{.1cm}
+  {\noindent(\alph{qscounter})}
+}%
+
+
+
+\renewcommand{\d}[1]{\mathinner{\mathrm{d}{#1}}}
+
+\newcommand{\modulo}[1]{\vert #1\vert}
+\DeclareMathOperator{\id}{id}
+
+\begin{document}
+\everymath{\displaystyle}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{UE S1.2 "Nombres: comment représenter le réel"}
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+James Bond, prisonnier du Docteur No, est soumis par ce dernier à un test de logique. 
+
+Le Docteur lui présente deux boîtes, et demande à James Bond d'ouvrir une des deux boîtes. Chaque boîte est soit vide, soit contient un lingot d'or. Si Bond trouve un lingot, il sera libéré. Le Docteur No peut très bien être magnanime et avoir placé deux lingots d'or, mais il peut aussi être impitoyable et avoir laissé les deux boîtes vides.
+
+Devant chacun des boîtes est indiqué :
+
+
+\emph{Porte 1} : Les deux boîtes sont vides.
+
+\emph{Porte 2} : Les deux boîtes sont vides.
+
+Entre deux rires machiavéliques, le Docteur No indique : "La boîte 1 dit la vérité si elle est vide, et ment sinon. Pour la boîte 2, c'est le contraire".
+
+Que doit faire James Bond ?
+
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+\question 
+Les fonctions suivantes sont-elles injectives ? Bijectives ? Surjectives ?
+
+\begin{enumerate}[a)]
+\item $f:[1,+\infty[\to\RR$ définie par $f(x)=3x+1$
+\item $f:\RR\to\RR$ définie par $f(x)=x^3$
+\item $f:[1,+\infty[\to \RR$ définie par $f(x)=\ln(x)$
+\item $f:[0,2\pi]\to\RR$ définie par $f(x)=\cos(x)$.
+\end{enumerate}
+
+\question 
+Pour chaque fonction, si elle ne l'est pas déjà, modifier l'ensemble de départ et/ou l'ensemble d'arrivée pour que $f$ devienne bijective.
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+Donner quatre fonctions $f$ telles que $f(x)=x^2$ : la première doit être injective, la deuxième doit être surjective, la troisième doit être bijective, et la dernière ne doit être ni injective ni surjective.
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Dans chacun des cas suivants, calculer $f\circ g$ et $g\circ f$, si c'est possible.
+
+\question $f:\begin{cases}\RR\to \RR \\ x\mapsto e^x\end{cases}$ et $g:\begin{cases}\RR\to \RR \\ x\mapsto 2x+1\end{cases}$
+
+
+\question $f:\begin{cases}\RR\to \RR \\ x\mapsto \cos(x) \end{cases}$ et $g:\begin{cases}\RR_+\to \RR \\ x\mapsto \sqrt{x+1} \end{cases}$
+
+
+\question $f:\begin{cases}\RR\to \RR \\ x\mapsto \ln(x)\end{cases}$ et $g:\begin{cases}\RR\to \RR \\ x\mapsto \sin(x)\end{cases}$
+
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+\question 
+Faire l'étude complète de la fonction $x\mapsto \cos(2x)-x$.
+
+
+\question 
+Faire l'étude complète de la fonction $x\mapsto \cos(2x)+2x^2$. 
+
+\textit{On pourra utiliser le fait (démontré dans un exercice posé en classe) que pour tout $x>0$ on a $\sin(2x)<2x$}
+
+\question En déduire que pour tout $x\in\RR$ on a $\cos(2x)<1-2x^2$
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+
+\question On a vu dans un exercice que la fonction $g:x\mapsto \sin(2x)-2x$ était strictement décroissante sur $\RR^+$. En déduire que l'on a $\sin(2x)<2x$ pour tout $x>0$.
+
+
+\question Faire l'étude complète de la fonction $f:x\mapsto \cos(2x)+2x^2$
+
+\textit{(Penser à utiliser la question 1) pour étudier le sens de variation !)}
+
+\question Démontrer que pour tout $x\in \RR$ on a $\cos(2x)\geq 1-2x^2$.
+
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Soit $f$ une fonction. Faire la négation des phrases suivantes :
+
+\begin{enumerate}[a)]
+\item Si $f$ est croissante alors $f$ est injective.   
+\item $\forall x\in\NN\; \exists y\in\NN\quad y^2=x$
+\item $\exists y\in\RR \forall x\in\RR \quad f(x)\leq y $
+\item $\forall a\in \NN\; \forall \eps>0 \quad f(a)<\eps \textrm{  et  } f(a)>0$
+\item $\forall x\in\RR\;\exists n\in\NN \quad x>n\;\Rightarrow\; f(x)>2n$
+\item $\forall a\in\RR\; \exists \ell\in\RR\;\forall \eps>0 \;\exists \eta>0 \forall x\in\RR \quad |x-a|<\eta \Rightarrow |f(x)-\ell|<\eps$
+\end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Comment écrivez-vous avec des quantificateurs les phrases suivantes :
+
+\begin{enumerate}[a)]
+\item $f$ est surjective
+\item $f$ n'est pas injective
+\item $f$ est bornée
+\item $f$ n'est pas croissante
+\end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Soit $f$ une fonction à valeur réelle et $D$ son ensemble de définition.
+
+ Pouvez-vous donner une fonction $f$ qui vérifie chacune des phrases suivantes ? Et une qui ne la vérifie pas ?
+ 
+ \begin{enumerate}[a)]
+ \item $\forall x\in D\; \exists y \in D \quad x\neq y \textrm{  et  } f(x)\neq f(y)$
+| \item $\exists y\in D\;\forall x\in D \quad f(x)\geq f(y)$
+ \item $\forall x\in D\;\exists y\in D \quad f(x)=-f(y)$
+ \end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+
+Soit $f$ une fonction. Faire la négation des phrases suivantes :
+
+\begin{enumerate}[a)]
+\item Si $f$ est surjective alors elle a une limite en $+\infty$. 
+\item $\forall x\in\RR\quad x>0 \text{ ou } x<0$
+\item $\forall x\in\RR\;\exists y\in\RR\quad f(x)=y$
+\item $\exists y\in\RR\;\forall x\in\RR\quad f(x)>y$
+\item $\forall x\in\RR^+\; \forall \eps>0\quad x>0\Rightarrow f(x)<\eps$
+\item $\forall \eps>0\;\forall A\in\RR\exists x>A \quad |f(x)|<\eps \textrm{ et  } f(x)$
+\item $\forall a\in\RR\; \exists \ell\in\RR\;\forall \eps>0 \;\exists \eta>0 \forall x\in\RR \quad |x-a|<\eta \Rightarrow |f(x)-\ell|<\eps$
+\end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Comment écrivez-vous avec des quantificateurs les phrases suivantes :
+
+\begin{enumerate}[a)]
+\item $f$ n'est pas injective
+\item $f$ est décroissante
+\end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Soit $f$ une fonction à valeur réelle et $D$ son ensemble de définition.
+
+ Pouvez-vous donner une fonction $f$ qui vérifie chacune des phrases suivantes ? Et une qui ne la vérifie pas ?
+ 
+ \begin{enumerate}[a)]
+ \item $\forall x\in D \;\exists y\in D\quad f(x)>f(y)$
+ \item $\exists x\in D\; \forall y\in D\quad f(x)=f(y)^2$
+ \end{enumerate}
+
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+\question Calculez la dérivée de la fonction définie par  $f(x)=e^x\sin(\sqrt x)$
+
+
+\question Trouver tous les $x\in\RR$ tels que
+$$\cos\left(3x-\frac{\pi}{4}\right)=\frac{\sqrt 3}{2}$$
+
+\question Trouver tous les $x\in\RR$ tels que 
+$$\cos(2x)\leq \frac12$$
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+\question Calculez les dérivées des fonctions définies par les formules suivantes :
+
+\begin{enumerate}[a)]
+\item $f(x)=\sin(\sqrt x)$
+\item $g(x)=2e^x\ln(1+2x)$
+\end{enumerate}
+
+\question Calculez les intégrales suivantes :
+
+\begin{enumerate}[a)]
+\item $\int_1^2 2x^3 \dd x$
+\item $\int_0^{\pi/2} 3\cos(2x) \dd x$ 
+\end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Soit $f$ une fonction.
+
+\question  Faites la négation des phrases suivantes :
+
+
+\begin{enumerate}[a)]
+\item $\forall x\in\RR \;\forall y\in\RR \quad f(x)=f(y) \text{  ou  } x<0$
+\item $\exists \eps>0\;\exists y\in\RR\;\forall x\in \RR\;\quad x<\eps\Rightarrow f(x)=y$ 
+\end{enumerate}
+
+\question Ecrire avec des quantificateurs la propriété : "$f$ n'est pas bornée".
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+\question Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}[a)]
+\item $y'-2y=4$
+\item $y'+y=x$
+\end{enumerate}
+
+\question Donner la solution de l'équation $y'+2y=0$ qui vérifie $y(0)=3$.
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Calculez les intégrales suivantes :
+
+\begin{enumerate}[a)]
+\item $\int_0^1 xe^{2x}\dd x$
+\item $\int_1^e x\ln(x)\dd x$
+\end{enumerate}
+
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Voici une liste d'équation différentielle. Pour chacune d'entre elles, donner son ordre puis dire si elle est linéaire. Si c'est le cas, dire si elle est homogène et/ou à coefficients constants.
+
+\begin{multicols}{2}
+\begin{enumerate}[a)]
+\item $y'+2y=2$
+\item $y'''+2xy''+3y=0$
+\item $y'=\cos(y)$
+\item $y'+\sqrt{1+x^2}y=3x+2$
+\item $2xy^{(4)}+3x^2y''+4y'=5x y$
+\item $(1+y')^2y=0$
+\item $2x^2y''+4y'+2x=0$
+\end{enumerate}
+\end{multicols}
+
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+\question Calculer (sans préciser le domaine de définition) la dérivée des fonctions suivantes :
+
+\begin{enumerate}[a)]
+\item $x\mapsto \frac{e^x}{1+x}$
+\item $x\mapsto \sqrt{\tan(x)}$
+\item $x\mapsto \ln(1+2x)(1+x^2)$
+\end{enumerate}
+
+\question Calculez les intégrales suivantes :
+
+\begin{enumerate}[a)]
+\item $\int_1^2 (2x+1)x^2\dd x$
+\item $\int_0^1 \frac{x^2}{x^3+3}\dd x$
+\item $\int_0^e \ln(2x+1)\dd x$
+\end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Voici deux propriétés d'une fonction $f:I\to \RR$. Pour chacune d'entre elles, donner un exemple de fonction la vérifiant, et un exemple de fonction ne la vérifiant pas.
+
+\begin{enumerate}[a)]
+\item $\exists y\in\RR\;\forall x\in I\quad f(x)>y$
+\item $\forall \eps>0\;\forall x\in I\;\exists y\in I\quad f(x)\geq f(y)+\eps$.
+\end{enumerate}
+
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+\question Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}[a)]
+\item $y'-2y=e^{3x}$
+\item $y'-(2x+1)y=0$
+\end{enumerate}
+
+\question Donner la solution de l'équation $y'+2y=3$ qui vérifie $y(0)=3$.
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Calculez une primitive des fonctions qui à $x$ associe 
+
+\begin{enumerate}[a)]
+\item $(2x+1)e^{-x}$
+\item $\frac{\ln(x)}{x^2}$
+\end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Complétez le tableau suivant :
+
+\begin{tabular}{|c|c|}
+\hline
+Fonction & Dérivée \\
+\hline\hline
+$x^n$ ($n\in\NN^*$ constant) & \hspace{8cm} $\phantom{\frac{1}{\frac{1}{2}}} $\\
+\hline
+$\exp(x)$ &  $\phantom{\frac{1}{\frac{1}{2}}} $\\
+\hline
+$\ln(x)$ & $\phantom{\frac{1}{\frac{1}{2}}} $ \\
+\hline
+$\sin(x)$ & $\phantom{\frac{1}{\frac{1}{2}}} $ \\
+\hline
+$\cos(x)$ &$\phantom{\frac{1}{\frac{1}{2}}} $\\
+\hline
+$\tan(x)$ &$\phantom{\frac{1}{\frac{1}{2}}} $ \\
+\hline
+$\frac {1} {x^n}$ &$\phantom{\frac{1}{\frac{1}{2}}} $ \\
+\hline
+$\sqrt x$ &$\phantom{\frac{1}{\frac{1}{2}}} $ \\
+\hline
+$\frac{1}{\sqrt x}$ &$\phantom{\frac{1}{\frac{1}{2}}} $ \\
+\hline
+\end{tabular}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Soient $f$ et $g$ deux fonctions dérivables.
+
+\question  La dérivée de $f\circ g$ est...
+
+$(f\circ g)'(x)=\dots$
+\vspace{1.5cm}
+
+\question La dérivée de $\frac{f}{g}$ est...
+
+$(\frac{f}{g})'(x)=\dots$
+\vspace{1.5cm}
+
+\question La dérivée de $f\times g$ est...
+
+$(f\times g)'(x)=\dots$
+\vspace{1.5cm}
+
+\question La formule d'intégration par parties est
+
+$\int_a^b f'(x)g(x)\dd x=\dots$
+
+\vspace{1.5cm}
+
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Complétez le tableau suivant :
+\\
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$x$&0&$\pi/6$ &$\pi/4$ &$\pi/3$ & $\pi/2$ & $\pi$\\
+\hline
+$\sin(x)\phantom{\frac{1}{\frac{1}{2}}}$ &$\qquad\qquad$& $\qquad\qquad$&$\qquad \qquad$&$\qquad\qquad$&$\qquad\qquad$&$\qquad\qquad$\\
+\hline
+$\cos(x)\phantom{\frac{1}{\frac{1}{2}}}$ &$\qquad \qquad$& $\qquad\qquad$&$\qquad\qquad$&$\qquad\qquad$&$\qquad \qquad$&$\qquad \qquad$\\
+\hline
+\end{tabular}
+\end{center}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Complétez : 
+
+
+\begin{enumerate}
+\item $\cos(\pi+x)=$
+\vspace{0.5cm}
+\item $\cos(\pi/2+x)=$
+\vspace{0.5cm}
+\item $\cos(\pi/2-x)=$
+\vspace{0.5cm}
+\item $\cos(-x)=$
+\vspace{0.5cm}
+\item $\sin(\pi+x)=$
+\vspace{0.5cm}
+\item $\sin(\pi/2+x)=$
+\vspace{0.5cm}
+\item $\sin(2\pi+x)=$
+\vspace{0.5cm}
+\item $\sin(-x)=$
+\end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Complétez : 
+
+
+\begin{enumerate}
+\item $\cos(a+b)=$
+\vspace{0.5cm}
+\item $\sin(a+b)=$
+\vspace{0.5cm}
+\item $\cos(x)^2$ (en fonction de $\cos(2x)$) =
+\vspace{0.5cm}
+\end{enumerate}
+
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+Simplifiez si vous le pouvez (écrivez ``aucune simplification possible'' si vous l'expression ne peut pas etre simplifiée) : 
+
+\begin{enumerate}
+\item $ e^a e^b = $
+\vspace{0.5cm}
+\item $ e^a + e^b = $
+\vspace{0.5cm}
+\item $ \ln(a) + \ln(b) = $
+\vspace{0.5cm}
+\item $ \ln(a) * \ln(b) = $
+\vspace{0.5cm}
+\item $ a^b = $
+
+\end{enumerate}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+Si $f$ est dérivable en a, quelle est l'équation de sa tangente en a? 
+\vspace{0.5cm}
+
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+ Soit $(u_n)$ la suite définie par $u_n=1+\frac12+\frac{1}{4}+\frac{1}{16}+\frac{1}{2^n}$.
+ 
+ \question Donner une formule exprimant $u_n$ en fonction de $n$.
+ 
+ \question Calculer la limite de $(u_n)$.
+ 
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\exosd{}
+
+ Donner sans justification la limite des suites définies par les formules suivantes :
+ 
+ \begin{enumerate}[a)]
+ \item $u_n=n\ln(n)$
+ \item $u_n=\frac{1+n}{1-n}$
+ \item $u_0=1$ et $u_{n+1}=u_n-n^2$
+ \end{enumerate}
+ 
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ \exosd{}
+ 
+ Les suites définies par les formules suivantes sont-elles croissantes, décroissantes, ou aucun des deux ? Justifier.
+ 
+ \begin{enumerate}[a)]
+ \item $u_n=n^2+(-1)^{n+1}$ 
+ \item $u_0\in\RR$ et $u_{n+1}=u_n+u_n^2$
+ \end{enumerate}
+ 
+% ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ \exosd{}
+ 
+ Soit $(u_n)$ la suite définie par $u_1=1$ et $u_{n+1}=\frac{u_n}{\sqrt{1+u_n^2}}$.
+ 
+ \question Calculer les premiers termes de la suite $(u_n)$.
+ 
+ \question Deviner une formule exprimant $u_n$ en fonction de $n$. La démontrer.
+ 
+ 
+ \exosd{}
+
+Soit $(u_n)$ la suite définie par $$u_n=\sum_{k=0}^n \frac{1}{3^k}=1+\frac13+\dots+\frac{1}{3^n}$$
+
+Donner une formule exprimant $u_n$ en fonction de $n$, puis calculer $\lim u_n$.
+
+\exosd{}
+
+\question On rappelle que $e\approx 2,718$. Expliquer pourquoi, pour tout $n\geq 1$, on a $(1+\frac{1}{n})\times \frac{1}{e}\leq 1$. Il n'y a pas besoin de faire de récurrence.
+
+\question En déduire que la suite $(u_n)$ définie pour $n\geq 1$ par $u_n=\frac{e^n}{n}$ est croissante.
+
+\exosd{}
+
+Donner sans justification la limite des suites suivantes :
+
+\begin{enumerate}[a)]
+\item $u_n=e^n/n$
+\item $u_n=n^{-n}$
+\item $\displaystyle u_n=\sum_{k=0}^n (1+2n)^2$
+\end{enumerate}
+
+
+
+\exosd{}
+
+Soit $(u_n)$ la suite définie par $u_1=0$ et 
+$$u_{n+1}=\ln(1+e^{u_n})$$
+
+\question Calculer les premiers termes de la suite $(u_n)$.
+
+\question Deviner une formule exprimant $u_n$ en fonction de $n$. La démontrer.
+
+ 
+
+\pb{Un exemple d'oscillateur amorti}
+
+L'objectif de ce problème est d'étudier la fonction $f:t\mapsto e^{-2t}(\cos(2t)+\sin(2t))$.
+
+\partie{}
+
+Soit $g$ la fonction qui à $t$ associe $\cos(2t)+\sin(2t)$.
+
+\question Donner le domaine de définition de $g$. La fonction $g$ est-elle périodique ? Si oui, quelle est sa période ?
+
+\question Quelles sont les valeurs de $\cos(\pi/4)$ et $\sin(\pi/4)$ ? Calculer également $\cos(2t-\pi/4)$ et en déduire que $g(t)=\sqrt{2}\cos(2t-\pi/4)$. 
+
+\question Calculer la dérivée de $g$, et étudier son signe.
+
+\question Faire le tableau de variation de $g$ sur l'intervalle $[-\pi/2,\pi/2]$.
+
+\question Parmi les trois graphes suivants, lequel est celui de la fonction $g$ ?
+
+\begin{center}
+\includegraphics[scale=0.6]{cos(x-pi)}
+\includegraphics[scale=0.7]{cos(2x-pi)}
+\includegraphics[scale=0.3]{3cos(x)}
+\end{center}
+
+\question \'Ecrire avec des quantificateurs la propriété "$g$ est injective", puis sa négation. La fonction $g$ est-elle injective ?
+
+\question Donner un intervalle de départ et d'arrivée qui rend $g$ bijective.
+
+\newpage
+\partie{}
+
+On rappelle que la fonction $f$ est définie par $f(t)= e^{-2t}(\cos(2t)+\sin(2t))$. D'après la question I.2, on a également $f(t)=\sqrt 2 e^{-2t}(\cos(2t-\pi/4))$.
+
+\question Donner le domaine de définition de $f$. La fonction $f$ est-elle périodique ?
+
+\question Donner la limite de $f$ en $+\infty$.
+
+\question Pour quels $t$ a-t-on  $f(t)=\sqrt 2e^{-2t}$ ? Et pour quels $t$ a-t-on $f(t)=-\sqrt 2e^{-2t}$ ?
+
+\question   Démontrer que l'on a, pour tout $t\in \RR$,
+$$f'(t)=-4e^{-2t}\sin(2t)$$
+
+\question Faire le tableau de variation de $f$ sur l'intervalle $[-\pi,\pi]$
+
+
+\question Tracer sur un même graphique les graphes des fonctions $f$, ainsi que $t\mapsto -\sqrt 2e^{-2t}$ et $t\sqrt 2\mapsto e^{-2t}$.
+
+\question (Bonus) 
+On considère un ressort horizontal attaché à l'une de ses extrémités. Lorsque l'on tire sur le ressort, celui-ci a tendance a revenir à sa position initiale (que l'on prend d'abscisse nulle) en oscillant (et parfois sans osciller).
+\\
+
+Parmi les fonctions $f$ et $g$, laquelle vous semble mieux décrire la position du ressort en fonction du temps ? Pourquoi ?
+\\
+
+Si la position du ressort est décrit par la fonction que vous avez choisie, quelle est l'amplitude du mouvement et la fréquence des oscillations ?
+
+\exosd{10 min}
+
+\question Calculez  :
+
+\begin{multicols}{3}
+\begin{enumerate}[a)]
+\item $12357+87962$ %100319
+\item $61\times 11$ %671
+\item $912/3$ %304
+\end{enumerate}
+\end{multicols}
+
+\question Simplifiez les fractions suivantes :
+
+\begin{multicols}{3}
+\begin{enumerate}[a)]
+\item $\frac{2}{3}\times \frac{5}{9}$ %10/27
+\item $\frac{1}{4}-\frac{7}{6}$ %-11/12
+\end{enumerate}
+\end{multicols}
+
+\exosd{5 min}
+
+Trouvez tous les $x\in\RR$ tels que $\sin(2x)=\frac{1}{2}$.% $x=\pi/12+k\pi$ ou $x=5\pi/12+k\pi$
+
+
+\exosd{10 min}
+
+Mettre sous forme algébrique les nombres complexes suivants :
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\frac{1-i}{1+i}$ %-i
+\item $e^{i\pi/4}$ %\sqrt2/2+i\sqrt 2/2$
+\item $2e^{2i\pi/3}$ %$-1+i\sqrt 3$
+\item $i^{2015}$ %-i
+\end{enumerate}
+\end{multicols}
+
+
+\exosd{20min}
+
+\question
+Calculez les intégrales suivantes  :
+
+\begin{enumerate}[a)]
+\item $\int_0^1 \frac{x}{x^2+1}\dd x$ %1/2\ln(2)
+\item $\int_{\pi/4}^{\pi/3}3\sin(2x)\dd x$ %3/4
+\end{enumerate}
+
+\question 
+Grâce à une intégration par parties, calculer 
+ $\int_1^e x^3\ln(x)\dd x$  %$1/16(-3e^4+1)
+
+
+
+
+\exosd{30min}
+
+\question
+
+Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}[a)]
+\item $y'-2y=0$ %y=Ce^{2x}
+\item $y'+\frac1xy=1$ (on cherchera une solution particulière de la forme $y(x)=Ax$)
+\end{enumerate}
+
+\question  Trouver la solution de l'équation $y'-2y=\cos(x)$  vérifiant que $y(0)=2$.
+%y=Ce^2x-2/5cos(x)+1/5sin(x)$, C=12/5
+
+%
+%
+\exosd{}
+
+\question Donnez le domaine de définition et calculez la dérivée de $\frac{\cos(x)}{\sin(x)}$.
+
+\question En utilisant la question précédente, calculez l'intégrale $$\int_{\pi/3}^{\pi/2}\frac{x}{\sin^2(x)}\dd x$$
+
+\question Donner les solutions, sur l'intervalle $]0,\pi[$, de l'équation différentielle $\sin^2(x)y'-xy=0$.
+
+\exosd{5min}
+
+Soit $f$ une fonction. 
+
+\question Quelle propriété de $f$ peut s'écrire avec la phrase suivante :
+
+$$\forall A>0\;\exists \eta>0\forall x\; |x-2|<\eta\Rightarrow f(x)>A$$
+
+\question Faire la négation de la phrase ci-dessus.
+
+\exosd{40min}
+
+On définit une fonction $f$ par 
+$$f(x)=\ln(x+\sqrt{x^2+1})$$
+
+\question 
+
+\squestion Démontrer que pour tout $x\in\RR$ on a $\vert x\vert < \sqrt{1+x^2}$
+
+\squestion En déduire le domaine de définition de $f$.
+
+\question
+
+\squestion Démontrer que $x+\sqrt{1+x^2}=\frac{1}{-x+\sqrt{1+x^2}}$.
+
+\squestion En déduire que $f$ est impaire.
+
+\question 
+
+\squestion Démontrer que a dérivée de la fonction $x\mapsto x+\sqrt{1+x^2}$ est $\frac{x+\sqrt{1+x^2}}{\sqrt{1+x^2}}$
+
+\squestion
+Démontrer que
+$$f'(x)=\frac{1}{\sqrt{1+x^2}}$$
+
+\question Calculer $\lim\limits_{x\to +\infty} f(x)$ et en déduire $\lim\limits_{x\to -\infty} f(x)$
+
+\question Faire le tableau de variation de $f$.
+
+\question Tracer sommairement le graphe de $f$.
+
+
+\exosd{}
+
+\question Calculez  :
+
+\begin{multicols}{3}
+\begin{enumerate}[a)]
+\item $89135+53410$
+\item $13\times 26$
+\item $406/7$
+\end{enumerate}
+\end{multicols}
+
+\question Simplifiez les fractions suivantes :
+
+\begin{multicols}{3}
+\begin{enumerate}[a)]
+\item $\frac{1}{5}-\frac{1}{3}$
+\item $\frac{2/9}{3/4}\times \frac{1}{3}$
+\item $\frac{1}{x-1}+\frac{1}{x}$
+\end{enumerate}
+\end{multicols}
+
+
+\exosd{}
+
+Mettre sous forme algébrique les nombres complexes suivants :
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $(1+2i)(5-3i)$
+\item $\frac{2-i}{3+4i}$
+\item $e^{i\pi/4}$
+\item $e^{5i\pi/6}$
+\item $e^{572i\pi/2}$
+\item $\frac{(\sqrt 3+i)^2}{1+\sqrt 3i}$
+\end{enumerate}
+\end{multicols}
+
+\exosd{}
+
+Résoudre l'équation $\cos(2x)=\sin(x)$.
+
+\exosd{}
+
+Calculez les intégrales suivantes (la dernière nécessite une intégration par parties) :
+
+\begin{enumerate}[a)]
+\item $\int_0^1 xe^{x^2}\dd x$
+\item $\int_{\pi/3}^{\pi/2}\cos(2x)\dd x$
+\item $\int_{\pi/2}^\pi x\sin(x)\dd x$
+%\item $\int_0^1 x^2e^x$
+\end{enumerate}
+
+
+\question
+
+Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}[a)]
+\item $y'-2y=e^x$
+\item $y'+x^2y=0$
+\end{enumerate}
+
+\question Trouver la solution de l'équation $y'-3y=0$  vérifiant que $y(0)=2$.
+
+
+%
+\exosd{}
+
+\question Démontrez que $\frac{1}{x-1}+\frac{1}{x-2}=\frac{1}{x^2-3x+2}$.
+
+\question En déduire une primitive de $\frac{1}{x^2-3x+2}$.
+
+\question Déterminez une primitive de $\frac{x}{x^2-3x+2}$.
+
+\exosd{}
+
+\question Voici deux phrases écrites avec des quantificateurs se rapportant à une fonction $f:\RR\to\RR$. Pour chacune d'entre elles, écrire sa négation, et donner un exemple vérifiant la propriété et un ne la vérifiant pas.
+
+$$\forall y\in \RR\; \exists x\in\RR \; \exists T\in\RR^*\quad f(x)=y \text{  et  } f(x+T)=y$$
+
+$$\exists A>0 \forall \eps>0\;\forall x\in\RR \quad x>A\Rightarrow |f(x)|<\eps $$
+
+\question Ecrire en quantificateurs la définition de "la fonction $f$ tend vers $0$ en $+\infty$". Faire sa négation.
+
+
+\exosd{}
+
+Soit $f$ la fontion définie par $$f(x)=\frac12\ln(\frac{1+x}{1-x})$$
+
+\question Donner le domaine de définition $D_f$ de $f$. La fonction $f$ est-elle paire, impaire, ou aucun des deux ?
+
+\question
+
+\squestion Expliquer pourquoi on a $f(x)=\frac{1}{2}(\ln(1+x)-\ln(1-x))$ (et en particulier vérifier que cette expression est bien définie pour $x\in D_f$..
+
+\squestion En déduire que l'on a $$f'(x)=\frac{1}{1-x^2}$$
+
+\question Donnez les limites de $f$ au bord du domaine de définition.
+
+\question Faites le tableau de variation de $f$ et tracez son graphe.
+
+
+
+\question En utilisant les questions précédentes, résoudre sur $]-1,1[$ l'équation $(1-x^2)y'-y=0$
+
+\question Bonus : quelles sont les solutions de l'équation $(1-x^2)y'-y=0$ sur $]1,+\infty[$ et sur $]-\infty,-1[$ ?
+
+\question On pose $y_0(x)=\frac{1+x}{\sqrt{1-x}}$
+
+ \squestion Calculer la dérivée de $y_0$.
+ 
+\squestion Démontrer que $y_0$ est une solution de l'équation 
+$$y'-\frac{1}{1-x^2} y=\frac{1}{2\sqrt{1-x}}$$
+
+\squestion En déduire toutes les solutions sur $]-1,1[$ de l'équation $$y'-\frac{1}{1-x^2} y=\frac{1}{2\sqrt{1-x}}$$
+
+\exosd{}
+On veut transmettre un signal élémentaire (0 ou 1) par un circuit électrique. Pour cela, on mesure une tension électrique à l'aide d'un récepteur. Si la tension dépasse strictement un certain seuil, le récepteur renvoie le signal 1. Si la tension est en dessous du seuil, le récepteur renvoie 0. 
+
+On envoie vers ce récepteur une tension qui varie en fonction du temps.
+
+\question On commence par envoyer une tension de la forme $$U=U_0 \cos(\omega t-\pi/6)$$ où $U_0 = 1V$ et  $\omega = 3 \mbox{rad.s}^{-1}$ . On suppose que le seuil du récepteur est réglé à $0,5V$.
+
+\squestion Dans chacun des cas suivants, dire si le récepteur est activé :
+\begin{itemize}
+\item pour $t=\pi/3 $ s
+\item pour $t=0$ s 
+\item pour $t=\pi/6$ s 
+\item pour $t=\pi/2$ s
+\item pour $t=2\pi/9 $ s
+\end{itemize}
+
+\squestion Résoudre l'équation $\cos(3t-\pi/6)=\frac{1}{2}$, puis l'inéquation $\cos(3t-\pi/6)>\frac12$.
+
+\squestion Pour quels temps le récepteur est-il activé ?
+
+\question Dans cette question, on considère que le signal (en V) est donné par la fonction  $f(t)=\frac{e^t-e^{-t}}{e^t+e^{-t}}$.
+
+\squestion Donner le domaine de définition $D_f$ de $f$. La fonction $f$ est-elle paire ou impaire ?
+
+\squestion Montrer que l'on a, pour tout $t \in D_f$,
+\[f'(t)=\frac{4}{(e^t+e^{-t})^2}\]
+
+\squestion Expliquer pourquoi l'on a, $\forall t \in D_f$, $f(t)=\frac{1-e^{-2t}}{1+e^{-2t}}=\frac{e^{2t}-1}{e^{2t}+1}$. En déduire les limites de $f$ en $+\infty$ et $-\infty$.
+
+\squestion Faire le tableau de variation de $f$.
+
+\squestion Calculer $f(\ln(3))$, et simplifier le résultat autant que possible.
+
+\squestion On fixe cette fois le seuil du récepteur à $0,8$ V. Pour quels temps est-il activé ?
+
+\question Dans cette question, le seuil du récepteur est fixé à un nombre $\alpha\in [0,1]$, et le signal que l'on envoie est donné par une fonction $f$ arbitraire.
+
+\squestion Voici une propriété écrite avec des quantificateurs :
+\[\exists T_0 \;\forall t\in\RR\quad t>T_0 \Rightarrow f(t)>\alpha\]
+
+Si cette propriété est vraie, quelle est la conséquence pour le récepteur ?
+
+\squestion Pouvez-vous écrire la négation de la propriété ci-dessus ? Donnez un exemple de fonction vérifiant cette propriété, et un autre ne la vérifiant pas.
+
+
+\exo{}{\coeur}
+
+Soit $x\in\RR$. Nier les propositions suivantes :
+
+\begin{enumerate}[a)]
+\item $0\leq x\leq 1$
+\item $x=0$ ou $(x\geq 0$ et $x^2=1$)
+\item $\forall y\in\RR$, $xy\neq 0$ ou $x=0$ ou $y=0$.
+\end{enumerate}
+
+Dans chaque cas, sont-elles vraies ou fausses ?
+
+\exo{}{\coeur}
+
+Trouver les couples de réels $(x,y)$ tels que
+
+\[ \begin{cases} 
+(x-2)(y-3)=0\\
+(x-1)(y-2)=0
+\end{cases}\]
+
+\exo{}{\coeur}
+
+Dire si les propositions suivantes sont
+vraies ou fausses, et les nier.
+
+\begin{enumerate}
+\item Pour tout réel $x$, si $x\geq 3$ alors $x^2\geq 5$.
+\item Pour tout entier naturel $n$, si $n>1$ alors $n\geq 2$.
+\item Pour tout réel $x$, si $x>1$ alors $x\geq 2$.
+\item Pour tout réel $x$,  $x^2\geq 1$ est équivalent à $x\leq 1$.
+\end{enumerate}
+
+\exo{}{\coeur}
+
+\question 
+Soit $p$ la phrase "$n$ est multiple de $2$" et $q$ la phrase "$n$ est multiple de $3$". Quels sont les entiers $n$ vérifiant "$p$ et $q$" ? Et ceux vérifiant "$p$ ou $q$ ?
+
+\question Même question, où cette fois $p$ est la phrase "$n$ est un multiple de 6" et $q$ est la phrase "$n$ est un multiple de $4$". 
+
+\exo{}{\coeur}
+
+\question
+Montrer que les trois propositions suivantes sont équivalentes :
+
+\begin{enumerate}[1.]
+\item Si (pour tout $\eps>0$, $\module a<\eps$) alors $a=0$.
+\item (Il existe $\eps>0$ tel que $\module a\geq \eps$) ou $a=0$.
+\item Si $a\neq 0$ alors (il existe $\eps>0$ tel que $\module a\geq \eps$).
+\end{enumerate}
+
+\question Démontrer la troisième proposition, et en déduire les autres.
+
+\exo{}{\coeur}
+
+\question Nier les implications suivantes  :
+
+\begin{enumerate}[a)]
+\item Si $x\geq 0$ alors $x^2+1\geq 0$.
+\item Si $a\neq 2x$ alors $a>2x$.
+\item $e^x=3 \Rightarrow x=\ln(3)$.
+\item $sin(x)=1/2 \Rightarrow x=\pi/3$
+\item $f(x)=3x\Rightarrow f'(x)=3$
+\item $x^2=4\Rightarrow x=2$
+\item $x^3=8\Rightarrow x=2$
+\item $x>2 \Rightarrow e^x>2$
+\item Si $x>y$ alors $f(x)>f(y)$
+\item Si $f(x)=f(y)$ alors $x\neq y$
+\item Si $x=y$ alors $f(x)=f(y)$.
+\end{enumerate}
+
+\question Dans chaque cas, écrire la réciproque.
+
+\question Ecrire la négation des réciproques que vous venez d'écrire.
+
+
+\exo{}{\coeur}
+
+Trouver les couples de réels $(x,y)$ tels que
+
+\[ \begin{cases} 
+(x-3)(y-4)=0\\
+(x-2)(y-3)=0
+\end{cases}\]
+
+\exo{}{\coeur}
+
+Vrai ou faux ($x$ et $y$ sont des réels, et $f:\RR\to \RR$) ?
+
+\begin{enumerate}[a)]
+\item $x^3=8 \Leftrightarrow x=2$
+\item $x>2 \Leftrightarrow \frac{1}{x}>\frac{1}{2}$
+\item $x=y \Leftrightarrow f(x)=f(y)$
+\item $x^2-2x+1=0\Leftrightarrow x=1$
+\end{enumerate}
+
+
+
+
+\exo{}{\coeur}
+
+
+
+\question
+Soit la proposition "Tous les parapluies sont bleus"
+Quelle est la négation de cette proposition? 
+
+\question
+Soit la proposition "Il existe un parapluie  bleu"
+Quelle est la négation de cette proposition? 
+
+\question
+Soit la proposition "Il existe une âme soeur pour chacun d'entre nous"
+Quelle est la négation de cette proposition? 
+
+
+\exo{}{\coeur}
+
+Soit $f:\RR\to\RR$ une fonction. 
+
+\question Exprimer à l'aide de quantificateurs les assertions suivantes :
+
+\begin{enumerate}[(i)]
+\item $f$ est croissante
+\item $f$ est impaire
+\item $f$ est constante
+\item $f$ est périodique de période $2\pi$
+\item $f$ n'est ni croissante ni décroissante
+\item $f$ est injective
+\item $f$ est surjective
+\end{enumerate}
+
+\question \'Ecrire leur négation.
+
+
+
+
+\exo{}{\trefle}
+Soit $f:\RR\to\RR$ une fonction. Voici plusieurs propriétés possibles de la fonction $f$. Quelles sont, en langage courant, leur signification ? Dans chaque cas, pouvez-vous trouver une fonction $f$ qui vérifie cette propriété ? Et une autre qui ne la vérifie pas ?
+
+\begin{enumerate}[(i)]
+\item $\forall x\in \RR\; \exists y\in \RR \;\; f(x)<f(y)$
+\item $\forall x\in \RR \; \exists T\in \RR \;\; f(x)=f(x+T)$
+\item $\forall x\in \RR \;\exists T\in \RR^* \;\; f(x)=f(x+T)$
+\item $\forall x\in \RR \; \exists y\in \RR \;\; f(x)=y$
+\item $\exists x\in \RR \; \forall y\in \RR\;\; f(x)=y$
+\end{enumerate}
+
+\exo{}{\trefle}
+
+Soit $f:\RR\to\RR$ une fonction. Les propriétés suivantes sont-elles vraies ou fausses ? Dans chaque cas, justifier.
+
+\begin{enumerate}[(i)]
+\item Si $f$ est impaire alors elle est croissante.
+\item Si $f$ est paire alors elle n'est ni croissante ni décroissante.
+\item Si $f$ tend vers $0$ en $+\infty$ alors elle est décroissante.
+\item Si $f(1)=f(-1)$ alors $f$ est paire.
+\item Si $f$ est périodique alors $f$ n'est ni paire ni impaire.
+\item Si $f$ est périodique alors $f$ est soit paire soit impaire.
+\item Si $f$ est impaire alors $f(0)=0$.
+\item Si $f$ est impaire alors $f$ est injective.
+\item Si $f$ est paire alors $f$ n'est pas injective.
+\item Supposons que $f$ soit un polynôme de degré 3\footnote{C'est-à-dire que $f$ peut s'écrire $f(x)=ax^3+bx^2+cx+d$} Si $f$ est paire alors il n'y a pas de terme en $x$.
+\item Supposons que $f$ soit un polynôme. Si $f$ est impaire alors il n'y a pas de terme en $x^2$.
+
+\end{enumerate}
+
+
+\exo{}{\coeur}
+
+On considère la phrase "Pour tout nombre réel $x$, il existe un entier naturel $N$ tel que $N>x$.
+
+\question Traduire cette phrase à l'aide de quantificateurs.
+
+\question \'Ecrire sa négation en français et avec des quantificateurs.
+
+
+\exo{}{\coeur}
+Les propositions suivantes sont-elles vraies ou fausses ? Lorsqu'elles sont fausses, écrire leur négation, et la démontrer.
+
+\begin{enumerate}[a)]
+
+\item $\exists x\in\NN\; \;x^2>7$
+\item $\forall x\in \NN \;\; x^2>7$
+\item $\forall x\in \NN\;\exists y\in \NN \;\; y>x^2$
+\item $\exists y\in \NN\;\forall x\in \NN \;\;  y>x^2$.
+
+\end{enumerate}
+
+
+
+
+
+\exo{}{\ttrefle}
+Soit $f_n$ et $f$ des fonctions définies sur l'intervalle $[0,1]$ et à valeurs réelles. On considère les propriétés :
+
+\begin{equation}
+\forall \eps>0\, \exists N\in \NN\,\forall x\in \RR\,\forall n\in \NN\; n\geq N\Rightarrow \module{f_n(x)-f(x)}<\eps
+\end{equation}
+
+et :
+
+\begin{equation}
+\forall \eps>0\, \forall x\in \RR\, \exists N\in \NN\,\forall n\in \NN\; n\geq N\Rightarrow \module{f_n(x)-f(x)}<\eps
+\end{equation}
+
+\question \'Ecrire la négation de chacune de ces propriétés.
+
+\question Quelle est la signification de ces propriétés ? Trouver un exemple de fonctions vérifiant la propriété (2) mais pas la (1).
+
+{\it On pourra prendre $f_n(x)=x^n$ et $f(x)=\begin{cases}
+0 \textrm{ si } x< 1 \\
+1 \textrm{ si } x=1
+\end{cases}$
+
+
+\exo{}{\coeur}
+
+Soit $f$ une fonction définie sur $\RR$. Que signifient les assertions suivantes ? Dans chaque cas, donner un exemple de fonction vérifiant la propriété, et un exemple ne la vérifiant pas.
+
+\begin{enumerate}
+\item $\forall A>0\; \exists B>0 \;\forall x>B\quad f(x)>A$
+\item $\forall \eps>0\; \exists A>0\;\forall x>A\quad |f(x)|<\eps$.
+\item $\forall \eps>0\;\exists A>0\;\forall x>A\quad |f(x)-1|<\eps$.
+\item $\exists l \in \RR \; \forall \eps>0\;\exists A>0\;\forall x>A\quad |f(x)-l|<\eps$.
+\item $\forall \eps>0 \; \exists \eta >0 \; \forall x\in\RR \; \quad |x|<\eta \Rightarrow |f(x)-1|<\eps$.
+\item $\forall \eps >0 \; \exists \eta \in \RR, \forall x \in \RR, |x-1|<\eta \Rightarrow |f(x)- 2|< \eps$.
+\item Soit $ x_0 \in \RR. \forall \eps >0 \; \exists \eta \in \RR, \forall x \in \RR, |x-x_0|<\eta \Rightarrow |f(x)-f(x_0)|< \eps$.
+\item $\forall x_0 \in \RR \; \forall \eps >0 \; \exists \eta \in \RR, \forall x \in \RR, |x-x_0|<\eta \Rightarrow |f(x)-f(x_0)|< \eps$.
+\end{enumerate}
+
+
+\exo{}{\trefle}
+Soit $f:\RR\to\RR$.
+Supposons que $\lim\limits_{x\to +\infty} f(x)=0$. Démontrer rigoureusement que la fonction $g$ définie par $g(x)=f(2x)$ tend vers $0$ quand $x$ tend vers $+\infty$.
+
+\exo{}{\trefle}
+
+Démontrer rigoureusement que la  fonction cosinus n'a pas de limite en $+\infty$.
+
+\exo{}{\trefle}
+Soit $f:\RR^*\to \RR$ définie par $f(x)=1/x$. Démontrer, en utilisant \emph{uniquement} la définition des limites, que $\lim\limits_{x\to +\infty}f(x)=0$.
+
+
+\exo{}{\trefle}
+Soit $f$ et $g$ deux fonctions définies sur un voisinage de $+\infty$. On suppose que $\lim\limits_{x\to +\infty} f(x)=0$ et que $\lim\limits_{x\to +\infty} g(x)=1$. Démontrer rigoureusement que
+$$\lim\limits_{x\to +\infty} f(x)+ g(x)=1$$
+
+\exo{}{\ttrefle}
+
+L'objectif de cet exercice est de démontrer que $\lim\limits_{n\to +\infty} \int_0^{\pi/2} \sin^n(t) \dd t=0$.
+
+\question Etudier le sens de variation de $t\mapsto \sin(t)\d t$. Démontrer que pour tout $\eps>0$, il existe $\alpha_\eps\in]0,\pi/2[$ tel que $0<t<\alpha_\eps\Rightarrow 0<\sin(t)<1-\eps$.
+
+\question Démontrer que $\lim\limits_{\eps\to 0}\alpha_\eps=\pi/2$
+
+\question Calculer $\lim\limits_{n\to +\infty} \sin^n(t)$, pour $t\in]0,\alpha_\eps[$. Expliquer pourquoi $\lim\limits_{n\to +\infty} \int_0^{\alpha_\eps} \sin^n(t)\d t=0$.
+
+\question Conclure.
+
+\exo{Datation au carbone 14}{\coeur}
+
+Le carbone 14 est un isotope radioactif du carbone. Cela signifie qu'un atome de carbone 14 a une certaine probabilité de se désintégrer à chaque instant : il émet un rayonnement puis se transforme en noyau de carbone non radioactif.
+
+Considérons un objet contenant du carbone, et notons $y(t)$ la proportion d'atomes de carbone 14 qu'il contient, en fonction du temps $t$. \'A chaque instant, la probabilité qu'un atome donné se désintègre est la même. Cela signifie que le nombre d'atomes qui vont se désintégrer à un moment donné est proportionnel au nombre d'atome total, c'est-à-dire à $y$.
+
+Autrement dit, la variation de $y$ est proportionnelle à $y$ : autrement dit, on a
+$$y'(t)=ky(t),$$
+pour une constante $k$. 
+
+(Ceci est une approximation : il n'y a pas moyen de savoir exactement combien d'atomes se désintègrent, mais la loi ci-dessus sera vérifiée en moyenne)
+
+\question Pouvez-vous trouver une solution de cette équation différentielle ? Si non, voici une indication : essayez de diviser les deux membres par $y$. Vous obtenez $\frac{y'}{y}=k$.  Vous reconnaissez à gauche la formule d'une certaine dérivée...
+
+\question Si vous ne l'avez pas deviné, les solutions sont de la forme $y(t)=Ce^{kt}$. $C$ est une constante (sans dimension) qui intervient lors de l'intégration.\\
+
+La demi-vie du carbone 14 est d'environ 5700 ans. Cela signifie que la moitié des atomes de carbones seront désintégrés en 5700 ans. Que vaut $k$ ?
+
+\question Le principe de la datation au carbone 14 est le suivant. On considère que la proportion de carbone 14 dans l'atmosphère reste constante au cours du temps, égale à $10^{-12}$. Tant qu'il respire, un être vivant aura donc la même proportion de carbone 14 dans ses cellules. Mais ensuite, il n'a plus d'échange avec l'extérieur, et par conséquent la proportion d'atomes de carbone 14 qu'il contient va décroître avec le temps.
+
+On effectue une mesure sur un arbre mort  ; on trouve une proportion de carbone 14 égale à $4.10^{-13}$. 
+
+\squestion On prend le temps de la mesure pour $t=0$. Que vaut alors la constante $C$ ?
+
+\squestion Combien de temps s'est-il écoulé depuis la mort de l'arbre ?
+
+
+\pb{Modélisation de populations}{}
+
+On veut étudier la façon dont une population varie au cours du temps (dynamique de population). Ces modèles peuvent s'appliquer dans beaucoup de cas concrets. Par exemple, on peut imaginer une culture de bactéries, et se demander comment la population évolue en fonction du temps. On peut aussi étudier une population d'animaux, ou le nombre d'humains sur Terre, etc.
+
+Dans ce qui suit, on note le temps $t$, et on note $N(t)$ la taille de notre population à l'instant $t$.
+
+\partie{Un modèle minimal}
+
+
+Si $N$ est le nombre d'habitants dans une nouvelle région (ou de cellules qui se divisent dans une culture), le modèle le plus simple pour décrire l'évolution de la population est donné par l'équation différentielle suivante :
+\begin{equation}
+N'(t) = \alpha N(t)
+\end{equation}
+
+$\alpha$ représente le taux d'accroissement de la population. 
+Cette équation traduit le fait que plus il y a de monde, plus il y a de naissances et de morts (s'il y a deux fois plus de monde, on s'attend à observer deux fois plus de naissances et deux fois plus de morts), donc la variation dans la population sera deux fois plus grande. 
+
+On rappelle/vous donne la solution de cette équation différentielle :
+
+$$
+N(t)= C\exp(\alpha t),$$
+
+où $C$ est une constante définie par les conditions initiales.
+
+Faites l'étude de $N(t)$. On distinguera les cas $\alpha<0$, $\alpha=0$ et $\alpha>0$.
+
+\begin{remarque}
+Ce modèle de population est dû à T. Malthus (1766-1834), économiste anglais. Celui-ci prédisant une croissance exponentielle de la population, jusqu'à ce qu'elle manque de ressources, Malthus prônait des restrictions démographiques importantes.
+\end{remarque}
+
+
+\partie{Le modèle de Verhulst}
+
+
+Le modèle simple marche bien quand les ressources semblent illimitées. Lorsque la population croît tellement qu'elle commence à épuiser ses ressources, on observe un ralentissement de la croissance de la population. 
+
+Pour modéliser ce comportement, on corrige l'équation précédente en la transformant en 
+\begin{equation}\label{eqV}
+\tilde{N}'(t) = \alpha (\beta - \tilde{N}(t) ) \tilde{N}(t),
+\end{equation}
+
+où $\alpha$ et $\beta$ sont des constantes positives.
+
+
+\question Pour quelle population est-on dans un régime stationnaire ? Autrement dit, quelle est la fonction $N$ solution de l'équation  \ref{eqV} qui vérifie $\tilde{N}'(t) =0$ pour tout $t$ ?
+
+Vous apprendrez bientôt à résoudre de telles équations différentielles. Pour le moment, voici la solution :
+ 
+\begin{equation}
+\tilde{N}(t)= \frac{\beta}{1+ C \exp(-\alpha\beta t)},
+\end{equation}
+où $C$ est une constante fixée par les conditions initiales. 
+
+
+\question Calculez la dérivée de $\tilde N$, en fonction de $C,\alpha$ et $\beta$.
+
+\question Vérifiez que $\tilde N$ est bien
+ une solution de l'équation.
+
+\question
+On suppose $C>0$.
+
+\squestion Faites l'étude de la fonction : domaine de définition, sens de variation, tableau de variation.
+
+On calculera en particulier la limite en $+\infty$, en fonction de $\alpha$ et $\beta$. 
+
+\squestion  Faites un tracé rapide de la fonction $\tilde N$.
+
+\squestion Cela vous semble-t-il conforme à ce qu'on attend du modèle ?
+
+
+\question Et si $C$ est négative, que se passe-t-il ? Est-ce réaliste ?
+
+\question 
+
+\begin{remarque}
+Le modèle que nous venons d'étudier est dû à Pierre François Verhulst (1804-1849), mathématicien belge, qui le proposa pour corriger et améliorer le modèle de Malthus
+\end{remarque}
+
+
+\exo{}{\ccoeur}
+Placer dans le plan les points dont les affixes sont :
+\begin{enumerate}
+\begin{multicols}{2}
+\item $2i$
+\item $-1$
+\item $1+i$
+\item $2+3i$
+\item $3-5i$
+\item $\sqrt{3}/2+i/2$
+\item $\cos(\pi/2)+i\sin(\pi/2)$
+\item $i(i+1)$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+Calculer les nombres complexes suivants :
+\begin{enumerate}
+\begin{multicols}{2}
+\item $(1+i)(2-i)$
+\item $2+i+3-5i$
+\item $(2-i)(3-i)+4i$
+\item $(1+i)^2$
+\item $(\sqrt3/2+i/2)^3$
+\end{multicols}
+\end{enumerate}
+
+
+
+
+
+
+\exo{}{\coeur}
+Dérivez dans chaque cas la fonction qui à $x$ associe:
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $x^n+\sin(x)$ 
+\item $2\cos(x)e^x$
+\item $\ln(x)^2+2$
+\item $e^{3x+2}$
+\item $\tan(x) \left(=\frac{\sin(x)}{\cos(x)} \right)$
+\item $\sin^2(x)+\cos^2(x)$
+\item $(2x+3)^3$
+\item $3x^6+ 4x^3 + 2x +12$
+\item $\sin(2x+1)$
+\item $\ln(3x)$
+\item $\sqrt{x^2+x+1}$
+\item $xe^{-x}$
+\item $\frac{4x+2}{5x^2+1}$
+\item $\frac{\ln(x)}{x}$
+\item $ x\ln (x)-x$
+\end{multicols}
+\end{enumerate}
+
+
+
+
+
+\begin{exo}{}{}
+Dérivez les fonctions f suivantes (on rappelle que $3^x=e^{x\ln(3)}$): 
+
+\begin{enumerate}
+\item $\forall x \in \RR  \setminus \lbrace-1/2,0 \rbrace$, $x\mapsto  \frac{e^x \ln(x) }{x^2+2x^3}$, $f'(x) = \frac{e^x ((2 x^2-5 x-2) \ln(x)+2 x+1)}{x^3 (2 x+1)^2}$
+\item $\forall x \in \RR $, $x\mapsto  3^x \sin x $, $f'(x)=3^x (\cos(x)+\ln(3) \sin(x))$
+\item $\forall x \in \lbrack 0,+ \infty \lbrack \setminus \lbrace{ 1 \rbrace} $, $x\mapsto  \frac{x\ln x}{x^2-1}$, $f'(x)= \frac{x^2-(x^2+1) \ln(x)-1}{x^2-1}^2$.
+\end{enumerate}
+\end{exo}
+
+
+\begin{exo}{}{}
+Calculez les dérivées des fonctions définies par:
+
+
+\begin{enumerate}[(a)]
+\item $f(x)=\frac{4\cos^2(x)-3}{2\cos(x)}$, $f'(x) = -2 \sin(x)- \frac{3}{2} \frac{\sin(x)}{\cos(x)^2}$
+\item $f(x)=(x^4-x^2+5)^4$, $f'(x) = 8 x (2 x^2-1) (x^4-x^2+5)^3$
+\item $f(x)=\frac{1}{\sqrt{x-3}}$, $f'(x) = -\frac{1}{2 (x-3)^{3/2}}$
+\item $f(x)=(\ln(x))^3$, $f'(x) = 3 \frac{\ln^2(x)}{x} $
+\item $f(x)=(x^2+x+1)e^x$, $f'(x) = e^x (x^2+3 x+2) $
+%\item $f(x)=x\sqrt{\frac{x-1}{x+1}}$
+\item $f(x)=\frac{-3x^2+4x-1}{x^2+2x+5}$, $f'(x) = -2 \frac{5 x^2+14 x-11)}{x^2+2 x+5}^2$
+\item $f(x)=(1-x)\sqrt{x+1}$, $f'(x) = \frac{-3 x-1}{2 \sqrt{x+1}} $
+\item $f(x)=\ln(\frac{2x-1}{x-3})$, $f'(x) = -\frac{5}{2 x^2-7 x+3}$
+\item $f(x)=\sqrt{(\ln(x))^2 +1}$, $f'(x) = \frac{\ln(x)}{x \sqrt{\ln^2(x)+1}}$
+\item $f(x)=\ln(e^{2x}-1)$, $f'(x) = \frac{(2 e^{2 x}}{e^{2 x}-1} $
+\item $f(x)=\ln(x+\sqrt{x^2+1})$, $f'(x) = \frac{1}{\sqrt{x^2+1}}$
+\end{enumerate}
+\end{exo}
+
+\exo{}{\coeur} Calculez les dérivées des fonctions qui à $x$ associent:
+
+
+\begin{enumerate}[(a)]
+\item $\cos(\omega x)$
+\item $e^{k^2x}$
+\item $\frac{yx^2}{2+nxy}$
+\item $\frac{1+2t}{x+Ce^{tx}} $
+\end{enumerate}
+
+Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $y'+2y=0$
+\item $2y'-4y=1$
+\item $3y'+2y=4$
+\item $5y'+2y=-4$
+\item $y'-4y=\frac{1}{2}$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+
+Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $y'-2y=e^x$
+\item $y'+2y=e^{-2x}$
+\item $y'-5y=2x+1$
+\item $y'-y=2\cos(x)+\sin(2x)$
+\item $2y'-y=x^2$
+\item $y''-2y'=1$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+
+Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $y'-xy=0$
+\item $y'-x^2y=0$
+\item $2y'-e^x y=0$
+\item $y'+\cos(2x)y=0$
+\item $y'-\ln(x)y=0$.
+\end{multicols}
+\end{enumerate}
+
+
+
+\exo{}{\ccoeur}
+Factorisez :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $3x+3-(x+1)^2$
+\item $(2x+1)^2-(4x+3)^2$
+\item $x^5-5x^4+4x^3$
+\item (\trefle) $x^3-1$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\ccoeur}
+Développez et simplifiez lorsque nécessaire:
+
+\begin{enumerate}
+\item $(4x^2+2x+3)(3x+2)$
+\item $(2x^3+4x^2+3x)(2x+3)+4x^3$
+\item $(2a+4b+c)(a+b+c)$
+\item $(2x+3y)(3x^2+2xy+4y^2+2x+1)+3y^2$
+\end{enumerate}
+
+\exo{}{\coeur}
+Réduisez au même dénominateur:
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $\frac{1}{x+1}+\frac{1}{2x+1}$
+\item $\frac{a}{2x^2+3}+\frac{b}{4a^2+x}$
+\item $\frac{x}{4x^2+2x+2}+\frac{1}{2x+3}$
+\item $\frac{2a+b}{4a^2+2a+3ab+1}+\frac{4b}{5a+2b}$
+\end{multicols}
+\end{enumerate}
+
+
+
+\exo{}{\trefle}
+
+Dans chaque cas, trouvez des constantes $a$ et $b$  pour que les égalités suivantes soient valides.
+
+\begin{enumerate}
+\item $\frac{1}{(2x+1)(x+1)}=\frac{a}{2x+1}+\frac{b}{x+1}$
+\item $\frac{1}{x^2+x}=\frac{a}{x}+\frac{b}{x+1}$
+\end{enumerate}
+
+
+\exo{}{\ccoeur}
+ Déterminer la limite de $f$ en $+\infty$ et en $-\infty$ (lorsque cela a un sens) dans chacun des cas suivants : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $f(x)=x^3+2x^2+3x+1$
+\item $f(x)=-4x^4+5x^3+2x+1$
+\item $f(x)=5x+3+4x^7$
+\item $f(x)=\frac{5x^3+2x+1}{1+2x+3x^2}$
+\item $f(x)=\frac{2x^2+2x+3}{x^4+x+1}$
+\item $f(x)=\frac{3x+1}{x+3}$
+\item $f(x)=\frac{\sqrt{x}+1}{x^2+2}$
+\end{enumerate}
+\end{multicols}
+
+\exo{}{\coeur}
+Déterminer les limites suivantes : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\lim\limits_{ x\to 1 \atop x>1} \frac{e^x}{x-1}$,
+\item $\lim\limits_{x\to 2\atop x<2} e^{\frac{1}{x-2}}$,
+\item $\lim\limits_{ x\to 0 \atop x>0} \frac{\ln(1+x)}{x^2}$,
+\item $\lim\limits_{x\to 0} \frac{\ln(1+x)}{\sin(x)}$,
+\item $\lim\limits_{x\to 1} \frac{\ln(x)}{x^2-1}$,
+\item $\lim\limits_{x\to 0} (1+x)^{\frac{1}{x}}$.
+\end{enumerate}
+\end{multicols}
+
+
+\exo{}{\coeur}
+Calculez les limites des fonctions suivantes en $0$ et en $+\infty$
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $x-\ln(x)$
+\item $\frac{\ln(x)}{x^2}$
+\item $x\sqrt{1+\ln(x)^2}$
+\item $\frac{\ln(x)-2}{\ln(x)+1}$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+Calculez les limites des fonctions suivantes en $+\infty$ et $- \infty$:
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $(2x+1)e^x$
+\item $xe^{-x}$
+\item $x^2e^{-x}-x$
+\item $\frac{3e^{2x}+1}{e^{2x}-1}$
+\end{multicols}
+\end{enumerate}
+
+
+\exo{}{\ccoeur}
+Simplifier lorsque c'est possible les expressions suivantes :
+\[ a_0 = e^{2\ln 2}\,, \qquad a_1 = e^{-\ln 3}\,, \qquad  a_2 = \ln\left(\frac{1}{e^6}\right)\,, \qquad a_3 = \sqrt{(e^x)^2}\,, \qquad a_4 = \sqrt{e^{(x^2)}}\,. \]
+\[  a_5 = e^{1+\ln 2}; \, a_6 = \ln\left(e^3 \sqrt{5}\right)-\dfrac{\ln 5}{2}; \, a_7 = \dfrac{\sqrt[3]{3^2}\sqrt[4]{27^7}\sqrt[5]{81^8}}{\sqrt[5]{9^2}\sqrt[2]{243^5}\sqrt[60]{3}}. \]
+
+
+%\begin{solution}[Logarithme, Exponentielle]
+%$a_0 = 2^2 = 4;\, a_1 = \frac{1}{3};\, a_2 = - 6;\, a_3 = e^x;\, a_4 = e^{\frac{x^2}{2}};\, a_5 = 2e;\, a_6 = 3;\, a_7 = \frac{1}{3}$.
+%\end{solution}
+
+
+
+
+\exo{}{\coeur}
+Résoudre dans $\RR$ les équations suivantes : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $e^{\frac{5x+3}{x-4}}=\frac{1}{e}$,
+\item $\frac{e^x-2}{e^x-1}=2$,
+\item $\frac{e^x+4}{2e^x +1}=5$.
+\item $\sqrt{e^x+3}=2$,
+\end{enumerate}
+\end{multicols}
+
+
+\exo{}{\coeur} Déterminer la limite de $f$ en $-\infty$ et en $+\infty$ dans chacun des cas suivants : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $f(x)=e^{2x}-e^x$,
+\item $f(x)=\frac{e^{2x}-1}{e^x+1}$,
+%\item $f(x)=x(\sqrt{e^{2x}+1}-e^x)$,
+\item $f(x)=e^{x^2}-e^{x+1}$.
+\end{enumerate}
+\end{multicols}
+
+\exo{}{\coeur} Déterminer les limites suivantes : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\lim\limits_{ x\to 1 \atop x>1} \frac{e^x}{x-1}$,
+\item $\lim\limits_{x\to 2\atop x<2} e^{\frac{1}{x-2}}$,
+\item $\lim\limits_{ x\to 0 \atop x>0} \frac{\ln(1+x)}{x^2}$,
+%\item $\lim\limits_{x\to 0} \frac{\ln(1+x)}{\sin(x)}$,
+\item $\lim\limits_{x\to 1} \frac{\ln(x)}{x^2-1}$,
+\item $\lim\limits_{x\to 0} (1+x)^{\frac{1}{x}}$.
+\end{enumerate}
+\end{multicols}
+
+\exo{}{\coeur}
+Résoudre dans $\RR$ les équations suivantes : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $5^{x+3}=25$,
+\item $2^{3-x}=5 \times 2^{5-2x}$,
+\item $3^{2x+1}=2^{x+2}$,
+\item $7^x+7^{x-2}=3^{x+1}+3^{x-1}$.
+\item $ x^{\frac{3}{2}}=8$,
+\item $x^{\frac{2}{3}}=25$,
+\item $3x^{\frac{1}{4}}=2x^{\frac{1}{2}}$,
+\item $3x\sqrt{x}=81$.
+\end{enumerate}
+\end{multicols}
+
+
+
+\exo{}{}
+Calculer une primitive des fonctions définies par les formules suivantes.
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $2x^{27}+x^3+4x+5$,
+\item $\sin(t+\pi/5)$,
+\item $1-2e^t$,
+\item $\frac{2}{\sqrt{1+t}}$,
+\item $\tan(x)(=\sin(x)/\cos(x))$
+\item $\frac{x^2+1}{(x^3/3+x+1)^3}$,
+\item $x^2\exp(x^3)$,
+\item $\frac{e^x}{e^x+4}$,
+\item $\cos(5x+3)$,
+\item $\frac{1}{x^n}$,
+\item $\frac{1}{\tan(x)}(=\frac{\cos(x)}{\sin(x)})$
+\item $f(x)=\frac{1}{2x-3}$
+\item $f(x)=e^{-x}+3e^{2x}+e^{-3x}$
+\end{enumerate}
+\end{multicols}
+
+\exo{}{\coeur}
+
+Calculez les intégrales suivantes.
+
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $\int_0^3 x \dd x$
+\item $\int_0^\pi \cos(3 x)\dd x$ 
+\item $\int_0^3 (\frac{ x^3}{5}+ 4 x^2 +6)  \dd x$
+\item $\int_1^2 \frac 1 x \dd x$
+
+%\item (\coeur)$\int (\frac{x}{x^2+1})\dd x$
+%\item (\coeur)$\int (x \exp(-x^2))\dd x$
+
+\end{multicols}
+\end{enumerate}
+
+%
+
+
+\exo{}{\coeur}
+En faisant une intégration par partie, calculez :
+\begin{enumerate}
+\item $\int x\sin(x)\dd x$ (on posera $u'(x)=\sin(x)$ et $v(x)=x$)
+\item $\int t\exp(t)\dd t$ (on posera $u'(t)=\exp(t)$ et $v(t)=t$
+\item $\int \ln(x)\dd x$ (on posera $u'(x)=1$ et $v(x)=\ln(x)$)
+\end{enumerate}
+
+\exo{}{}
+Calculez (par une méthode directe) une primitive des fonctions qui à $x$ associent :
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\frac{3x^2}{4x^3+1}$,
+\item $\frac{e^x+1}{e^x+x}$,
+\item $\frac{1}{\sqrt{3x+1}}$,
+\item $\frac{\sin(x)}{\cos(x)^4}$,
+\item $x\cos(3x^2)$,
+\item $\frac{1}{\cos^2(x)}$,
+\item $f(x)=\frac{1}{(3x+5)^3}$
+\item $f(x)=\frac{x}{(x^2-4)^2}$
+\item $f(x)=(x^2-4x+5)^4(x-2)$
+\item $f(x)=\frac{\ln(x)}{x}$
+\item $f(x)=\frac{1}{x\ln(x)}$
+\item $f(x)=\sin(5x)-2\cos(3x)+4\sin(2x)$
+\item $f(x)=\sin(x)\cos(x)^3$
+\item $f(x)=(2+\sin(x))^2\cos(x)$
+\item $f(x)=\cos(x)^2$
+\item $f(x)=\frac{1}{x^2}e^{\frac{1}{x}}$
+\item $f(x)=\frac{e^{\sqrt{x}}}{\sqrt{x}}$
+\item $f(x)=xe^{x^2-1}$
+\end{enumerate}
+\end{multicols}
+
+\exo{}{\trefle}
+Calculez les intégrales suivantes (on pourra faire une intégration par parties bien choisie):
+\begin{enumerate}
+\item $\int_0^1 x^2 \exp(x)\dd x$
+\item $\int_1^e (\ln(x))^2\dd x$
+\item $\int_0^2 \sin(t) \exp(t))\dd t$.
+\end{enumerate}
+
+\exo{}{\trefle}
+Calculez une primitive des fonctions qui à $x$ associent:
+\begin{multicols}{2}
+\begin{enumerate}
+\item $x\cos(x)$ (dériver $x$ et intégrer $\cos$)
+\item $x^2\sin(x)$ (se ramener à l'exemple précédent)
+\item $x^2e^x$ (se ramener à $xe^x$),
+\item $\frac{x}{e^x}$
+\item $(2x+1)e^x$,
+\item $x\ln(x)$
+\item $x^2\ln(x)$
+
+\end{enumerate}
+\end{multicols}
+
+
+\exo{}{\coeur}
+Résoudre dans $\RR$ les équations suivantes :
+
+\begin{enumerate}[a)]
+\item $2x^2+3x+1=0$
+\item $4x^2-3x+5=0$
+\item $x^2-8x+2=0$
+\item $3x^2-5x-1=0$
+\end{enumerate}
+
+\exo{}{\coeur}
+
+\question
+Factoriser lorsque c'est possible  les expressions suivantes :
+
+\begin{enumerate}[a)]
+\item $2x^2+4x+1$
+\item $x^2-2x-2$
+\item $-4x^2+5x-2$
+\item $-x^2+3x+1$
+\end{enumerate}
+
+\question Etudier le signe de chacune des expressions.
+
+
+\begin{exo}{}{\coeur}
+Exprimer en fonction de $\cos x$, $\sin x$ et $\tan x$ et donner le domaine de validité :
+\begin{align*}
+&\cos(x-y)\,,&&\sin (x-y)\,,&&\tan (x-y)\,,\\
+&\cos(x+\pi)\,,&&\sin (x+\pi) \,,&&\tan (x+\pi) \,.\\
+&\cos(\frac{\pi}{2}-x)\,,&&\sin (\frac{\pi}{2}-x) \,,&&\tan (\frac{\pi}{2}-x) \,.
+\end{align*}
+
+Exprimer en fonction de $\cos (x\pm y)$ et $\sin (x\pm y)$ et donner le domaine de validité :
+\begin{align*}
+&\cos x\cos y\,,&&\sin x\sin y\,,&&\cos x \sin y \,.
+\end{align*}
+
+\end{exo}
+
+\exo{}{\ccoeur}
+Simplifier les expressions suivantes :
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\sin(\pi/2-x)$
+\item $\sin(x+6\pi)$
+\item $\cos({x+\pi/2})$
+\item $\cos(\frac{-37\pi}{2})$
+\item $\sin(\frac{-17\pi}{4})$
+\end{enumerate}
+\end{multicols}
+
+
+\exo{}{\coeur}
+Sachant que $x\in]0,\pi/2[$ et que $\cos x=0,3$, déterminer $\sin(x)$ et $\tan(x)$.
+
+\exo{}{\coeur}
+Résoudre les équations suivantes, pour $x\in \RR$:
+\begin{enumerate}
+\item $\sin(2x-\frac \pi 4)=\sqrt 3/2$,
+\item $\sin(2x+\frac \pi 4)= \cos(x+\pi/ 6)$,
+\item $\cos(3x)=\sin(2x)$
+\end{enumerate}
+
+
+\exo{}{\coeur}
+\question Linéariser $\cos^4(x)$ (c'est-à-dire, exprimer comme une somme de termes en $\cos(x),\sin(x),\cos(2x),\sin(2x)$, etc.).
+
+\question Développer $\cos(3x)$ : exprimer $\cos(3x)$ en fonction de $\cos(x)$ et $\sin(x)$ uniquement. Faire de même avec $\cos(4x)$.
+
+
+
+\exo{}{\ccoeur}
+
+\question Dans le plan, muni d'une base de votre choix, tracer les vecteurs  $(1,2)$, $(3,5)$, $(2,-2)$, $(6,-7)$.
+
+\question Faire la somme des deux premiers vecteurs, puis des trois premiers, puis des quatre vecteurs, de deux manières (algébrique et géométrique).
+
+\exo{}{\coeur}
+
+Déterminer les coordonnées du vecteur $\vec u$ dans les situations suivantes :
+
+\begin{enumerate}[a)]
+\item $\vec u$ fait  un angle de $\pi/4$ avec l'axe des abscisses, et a pour norme $2$
+\item $\vec u$ fait un angle de $\pi/3$ avec l'axe des abscisses, et a pour norme $1$
+\item $\vec u$ fait un angle de $\pi/3$ avec l'axe des ordonnées, et a pour norme $\sqrt 3$
+\end{enumerate}
+
+\exo{}{\ccoeur}
+
+Calculer le produit scalaire $\scal{\vec u,\vec v}$, lorsque $\vec u$ et $\vec v$ sont les vecteurs de $\RR^2$ suivants :
+
+\begin{enumerate}[a)]
+\item $\vec u=(2,3)$ et $\vec v=(3,4)$
+\item $\vec u=(3,-1)$ et $\vec v=(-5,0)$
+\item $\vec u=(5,2)$ et $\vec v=(-\pi,\sqrt 2)$
+\item $\vec u=(0,1)$ et $\vec v$ est un vecteur unitaire faisant un angle $\pi/3$ avec l'axe des abscisses
+\item $\vec u$ est un vecteur unitaire et $\vec v=3\vec u$.
+\end{enumerate} 
+
+\exo{}{\coeur}
+
+Déterminer un vecteur unitaire orthogonal à $\vec u$ dans chacun des cas suivants :
+
+\begin{enumerate}[a)]
+\item $\vec u=(1,0)$
+\item $\vec u=(1,1)$
+\item $\vec u=(2,3)$ 
+\item $\vec u=(3,-1)$ 
+\item $\vec u=(5,2)$
+\end{enumerate}
+
+
+\exo{}{\trefle}
+Soit $A,B,C$ trois  points du plan.
+
+\question Démontrer que 
+$$\scal{\vec{BC},\vec{BC}}=\scal{\vec{AB},\vec{AB}}-2\scal{\vec{AB},\vec{AC}}+\scal{\vec{AC},\vec{AC}}$$
+
+\question En déduire la \emph{formule d'Al-Kashi}: en notant $a=BC$, $b=AC$ et $c=AB$, on a
+$$a^2=b^2+c^2-2bc\cos(\angle{BAC})$$
+
+
+\exo{}{\coeur}
+
+\question Ecrivez (sans tricher !) les symboles de l'alphabet grec sur votre feuille : dans l'ordre,
+
+{alpha},{bêta},{gamma},{delta},{epsilon},{zêta},{êta},{thêta},
+{iota},kappa,
+
+lambda,mu,nu,xi,omicron,pi,rhô,sigma,tau,upsilon,phi,khi,
+psi,
+oméga
+
+\question Cachez l'énoncé, et lisez ce que vous avez écrit sur votre feuille.
+
+
+\exo{}{\ccoeur}
+
+Dans les expressions suivantes, remplacer la variable $x$ par $2x$, puis par $\cos(x)$, puis par $y^2$.
+
+
+
+\begin{enumerate}[a)]
+
+\begin{multicols}{3}
+\item $3x^2+3+e^x$
+\item $\cos(x)+\sin(x)$
+\item $\frac{3x+2}{4x+3}$
+\item $\sqrt{x^2+1}+\frac{x+\ln(x)}{x^2}$
+\end{multicols}
+\end{enumerate}
+
+
+\exo{}{\coeur}
+Simplifier lorsque c'est possible les expressions suivantes :
+
+\begin{enumerate}[a)]
+\begin{multicols}{3}
+ \item $e^{2\ln 2}$
+ \item $ e^{-\ln 3}$
+ \item $  \ln\left(\frac{1}{e^6}\right)$
+ \item $ \sqrt{(e^x)^2}$
+ \item $\sqrt{e^{(x^2)}}$
+ \item $e^{1+\ln 2}$
+ \item $\ln\left(e^3 \sqrt{5}\right)-\dfrac{\ln 5}{2}$
+ \item $  \dfrac{\sqrt[3]{3^2}\sqrt[4]{27^7}\sqrt[5]{81^8}}{\sqrt[5]{9^2}\sqrt[2]{243^5}\sqrt[60]{3}}. $
+\end{multicols}
+\end{enumerate}
+
+
+
+%\begin{solution}[Logarithme, Exponentielle]
+%$a_0 = 2^2 = 4;\, a_1 = \frac{1}{3};\, a_2 = - 6;\, a_3 = e^x;\, a_4 = e^{\frac{x^2}{2}};\, a_5 = 2e;\, a_6 = 3;\, a_7 = \frac{1}{3}$.
+%\end{solution}
+
+
+
+
+\exo{}{\coeur}
+Résoudre dans $\RR$ les équations suivantes : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $e^{\frac{5x+3}{x-4}}=\frac{1}{e}$,
+\item $\frac{e^x-2}{e^x-1}=2$,
+\item $\frac{e^x+4}{2e^x +1}=5$.
+\item $\sqrt{e^x+3}=2$,
+\end{enumerate}
+\end{multicols}
+
+
+\exo{}{\coeur}
+Dérivez dans chaque cas la fonction qui à $x$ associe:
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $x^n+\sin(x)$ 
+\item $2\cos(x)e^x$
+\item $\ln(x)^2+2$
+\item $e^{3x+2}$
+\item $\tan(x) \left(=\frac{\sin(x)}{\cos(x)} \right)$
+\item $\sin^2(x)+\cos^2(x)$
+\item $(2x+3)^3$
+\item $3x^6+ 4x^3 + 2x +12$
+\item $\sin(2x+1)$
+\item $\ln(3x)$
+\item $\sqrt{x^2+x+1}$
+\item $xe^{-x}$
+\item $\frac{4x+2}{5x^2+1}$
+\item $\frac{\ln(x)}{x}$
+\item $ x\ln (x)-x$
+\end{multicols}
+\end{enumerate}
+
+
+\exo{}{\coeur}
+Résoudre dans $\RR$ les équations suivantes : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $5^{x+3}=25$,
+\item $2^{3-x}=5 \times 2^{5-2x}$,
+\item $3^{2x+1}=2^{x+2}$,
+\item $7^x+7^{x-2}=3^{x+1}+3^{x-1}$.
+\item $ x^{\frac{3}{2}}=8$,
+\item $x^{\frac{2}{3}}=25$,
+\item $3x^{\frac{1}{4}}=2x^{\frac{1}{2}}$,
+\item $3x\sqrt{x}=81$.
+\end{enumerate}
+\end{multicols}
+
+
+\exo{}{\ccoeur}
+Factorisez :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $3x+3-(x+1)^2$
+\item $(2x+1)^2-(4x+3)^2$
+\item $x^5-5x^4+4x^3$
+\item (\trefle) $x^3-1$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\ccoeur}
+Développez et simplifiez lorsque nécessaire:
+
+\begin{enumerate}
+\item $(4x^2+2x+3)(3x+2)$
+\item $(2x^3+4x^2+3x)(2x+3)+4x^3$
+\item $(2a+4b+c)(a+b+c)$
+\item $(2x+3y)(3x^2+2xy+4y^2+2x+1)+3y^2$
+\end{enumerate}
+
+\exo{}{\coeur}
+Réduisez au même dénominateur:
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $\frac{1}{x+1}+\frac{1}{2x+1}$
+\item $\frac{a}{2x^2+3}+\frac{b}{4a^2+x}$
+\item $\frac{x}{4x^2+2x+2}+\frac{1}{2x+3}$
+\item $\frac{2a+b}{4a^2+2a+3ab+1}+\frac{4b}{5a+2b}$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\trefle}
+
+Dans chaque cas, trouvez des constantes $a$ et $b$  pour que les égalités suivantes soient valides.
+
+\begin{enumerate}
+\item $\frac{1}{(2x+1)(x+1)}=\frac{a}{2x+1}+\frac{b}{x+1}$
+\item $\frac{1}{x^2+x}=\frac{a}{x}+\frac{b}{x+1}$
+\end{enumerate}
+
+\section{Limites}
+
+\exo{}{\coeur}
+Calculez les limites des fonctions suivantes en $0$ et en $+\infty$
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $x-\ln(x)$
+\item $\frac{\ln(x)}{x^2}$
+\item $x\sqrt{1+\ln(x)^2}$
+\item $\frac{\ln(x)-2}{\ln(x)+1}$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+Calculez les limites des fonctions suivantes en $+\infty$ et $- \infty$:
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $(2x+1)e^x$
+\item $xe^{-x}$
+\item $x^2e^{-x}-x$
+\item $\frac{3e^{2x}+1}{e^{2x}-1}$
+\end{multicols}
+\end{enumerate}
+
+
+
+\exo{Reprise}{\coeur}
+
+Dérivez dans chaque cas la fonction qui à $x$ associe:
+
+\begin{enumerate}
+\begin{multicols}{3}
+\item $x^n+\sin(x)$ 
+\item $2\cos(x)e^x$
+\item $\ln(x)^2+2$
+\item $e^{3x+2}$
+\item $\tan(x) \left(=\frac{\sin(x)}{\cos(x)} \right)$
+\item $\sin^2(x)+\cos^2(x)$
+\item $(2x+3)^3$
+\item $3x^6+ 4x^3 + 2x +12$
+\item $\sin(2x+1)$
+\item $\ln(3x)$
+\item $\sqrt{x^2+x+1}$
+\item $xe^{-x}$
+\item $\frac{4x+2}{5x^2+1}$
+\item $\frac{\ln(x)}{x}$
+\item $ x\ln (x)-x$
+\end{multicols}
+\end{enumerate}
+
+
+
+\exo{}{\ccoeur}
+Placer dans le plan les points dont les affixes sont :
+\begin{enumerate}
+\begin{multicols}{2}
+\item $2i$
+\item $-1$
+\item $1+i$
+\item $2+3i$
+\item $3-5i$
+\item $\sqrt{3}/2+i/2$
+\item $\cos(\pi/2)+i\sin(\pi/2)$
+\item $i(i+1)$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+Calculer les nombres complexes suivants :
+\begin{enumerate}
+\begin{multicols}{2}
+\item $(1+i)(2-i)$
+\item $2+i+3-5i$
+\item $(2-i)(3-i)+4i$
+\item $(1+i)^2$
+\item $(\sqrt3/2+i/2)^3$
+\end{multicols}
+\end{enumerate}
+
+\section{Integration}
+
+\exo{}{\coeur}
+Donner une fonction dont la dérivée est 
+\begin{enumerate}
+\begin{multicols}{2}
+\item $e^x$
+\item $\ln(2x)$
+\item $\frac1x$
+\item $\cos(x)$
+\item $x^4$
+\item $\frac1{x^2}$
+\item $\frac1{x^5}$
+\item $2x^3+2x^2+3x^4+x^5+3$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+Calculer les intégrales suivantes :
+\begin{enumerate}
+\begin{multicols}{2}
+\item $\int_0^1 x dx$
+\item $\int_0^\pi \sin(x)dx$
+\item $\int_3^4 \frac1{2x} dx$
+\item $\int_1^e \ln(x) dx$
+\item $\int_0^2 (x+2)^3 dx$
+\item $\int_0^1 xe^{x^2}dx$
+\end{multicols}
+\end{enumerate}
+
+
+\section{Vecteurs}
+
+\exo{}{\ccoeur}
+
+\question Dans le plan, muni d'une base de votre choix, tracer les vecteurs  $(1,2)$, $(3,5)$, $(2,-2)$, $(6,-7)$.
+
+\question Faire la somme des deux premiers vecteurs, puis des trois premiers, puis des quatre vecteurs, de deux manières (algébrique et géométrique).
+
+\exo{}{\coeur}
+
+Déterminer les coordonnées du vecteur $\vec u$ dans les situations suivantes :
+
+\begin{enumerate}[a)]
+\item $\vec u$ fait  un angle de $\pi/4$ avec l'axe des abscisses, et a pour norme $2$
+\item $\vec u$ fait un angle de $\pi/3$ avec l'axe des abscisses, et a pour norme $1$
+\item $\vec u$ fait un angle de $\pi/3$ avec l'axe des ordonnées, et a pour norme $\sqrt 3$
+\end{enumerate}
+
+
+
+\exo{}{\ccoeur}
+Placer dans le plan les points dont les affixes sont :
+\begin{enumerate}
+\begin{multicols}{2}
+\item $2i$
+\item $-1$
+\item $1+i$
+\item $2+3i$
+\item $3-5i$
+\item $\sqrt{3}/2+i/2$
+\item $\cos(\pi/2)+i\sin(\pi/2)$
+\item $i(i+1)$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+Calculer les nombres complexes suivants :
+\begin{enumerate}
+\begin{multicols}{2}
+\item $(1+i)(2-i)$
+\item $2+i+3-5i$
+\item $(2-i)(3-i)+4i$
+\item $(1+i)^2$
+\item $(\sqrt3/2+i/2)^3$
+\end{multicols}
+\end{enumerate}
+
+\section{Integration}
+
+\exo{}{\coeur}
+Donner une fonction dont la dérivée est 
+\begin{enumerate}
+\begin{multicols}{2}
+\item $e^x$
+\item $\ln(2x)$
+\item $\frac1x$
+\item $\cos(x)$
+\item $x^4$
+\item $\frac1{x^2}$
+\item $\frac1{x^5}$
+\item $2x^3+2x^2+3x^4+x^5+3$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+Calculer les intégrales suivantes :
+\begin{enumerate}
+\begin{multicols}{2}
+\item $\int_0^1 x dx$
+\item $\int_0^\pi \sin(x)dx$
+\item $\int_3^4 \frac1{2x} dx$
+\item $\int_1^e \ln(x) dx$
+\item $\int_0^2 (x+2)^3 dx$
+\item $\int_0^1 xe^{x^2}dx$
+\end{multicols}
+\end{enumerate}
+
+
+\section{Vecteurs}
+
+\exo{}{\ccoeur}
+
+\question Dans le plan, muni d'une base de votre choix, tracer les vecteurs  $(1,2)$, $(3,5)$, $(2,-2)$, $(6,-7)$.
+
+\question Faire la somme des deux premiers vecteurs, puis des trois premiers, puis des quatre vecteurs, de deux manières (algébrique et géométrique).
+
+\exo{}{\coeur}
+
+Déterminer les coordonnées du vecteur $\vec u$ dans les situations suivantes :
+
+\begin{enumerate}[a)]
+\item $\vec u$ fait  un angle de $\pi/4$ avec l'axe des abscisses, et a pour norme $2$
+\item $\vec u$ fait un angle de $\pi/3$ avec l'axe des abscisses, et a pour norme $1$
+\item $\vec u$ fait un angle de $\pi/3$ avec l'axe des ordonnées, et a pour norme $\sqrt 3$
+\end{enumerate}
+
+
+
+\section{Produit scalaire}
+\exo{}{\ccoeur}
+
+Calculer le produit scalaire $\scal{\vec u,\vec v}$, lorsque $\vec u$ et $\vec v$ sont les vecteurs de $\RR^2$ suivants :
+
+\begin{enumerate}[a)]
+\item $\vec u=(2,3)$ et $\vec v=(3,4)$
+\item $\vec u=(3,-1)$ et $\vec v=(-5,0)$
+\item $\vec u=(5,2)$ et $\vec v=(-\pi,\sqrt 2)$
+\item $\vec u=(0,1)$ et $\vec v$ est un vecteur unitaire faisant un angle $\pi/3$ avec l'axe des abscisses
+\item $\vec u$ est un vecteur unitaire et $\vec v=3\vec u$.
+\end{enumerate} 
+
+\exo{}{\coeur}
+
+Déterminer un vecteur unitaire orthogonal à $\vec u$ dans chacun des cas suivants :
+
+\begin{enumerate}[a)]
+\item $\vec u=(1,0)$
+\item $\vec u=(1,1)$
+\item $\vec u=(2,3)$ 
+\item $\vec u=(3,-1)$ 
+\item $\vec u=(5,2)$
+\end{enumerate}
+
+
+\exo{}{\trefle}
+Soit $A,B,C$ trois  points du plan.
+
+\question Démontrer que 
+$$\scal{\vec{BC},\vec{BC}}=\scal{\vec{AB},\vec{AB}}-2\scal{\vec{AB},\vec{AC}}+\scal{\vec{AC},\vec{AC}}$$
+
+\question En déduire la \emph{formule d'Al-Kashi}: en notant $a=BC$, $b=AC$ et $c=AB$, on a
+$$a^2=b^2+c^2-2bc\cos(\angle{BAC})$$
+
+
+\section{Limites}
+
+
+\exo{}{\ccoeur}
+ Déterminer la limite de $f$ en $+\infty$ et en $-\infty$ (lorsque cela a un sens) dans chacun des cas suivants : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $f(x)=x^3+2x^2+3x+1$
+\item $f(x)=-4x^4+5x^3+2x+1$
+\item $f(x)=5x+3+4x^7$
+\item $f(x)=\frac{5x^3+2x+1}{1+2x+3x^2}$
+\item $f(x)=\frac{2x^2+2x+3}{x^4+x+1}$
+\item $f(x)=\frac{3x+1}{x+3}$
+\item $f(x)=\frac{\sqrt{x}+1}{x^2+2}$
+\end{enumerate}
+\end{multicols}
+
+\newpage
+
+
+\exo{}{\trefle}
+Déterminer les limites suivantes : 
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\lim\limits_{ x\to 1 \atop x>1} \frac{e^x}{x-1}$,
+\item $\lim\limits_{x\to 2\atop x<2} e^{\frac{1}{x-2}}$,
+\item $\lim\limits_{ x\to 0 \atop x>0} \frac{\ln(1+x)}{x^2}$,
+\item $\lim\limits_{x\to 0} \frac{\ln(1+x)}{\sin(x)}$,
+\item $\lim\limits_{x\to 1} \frac{\ln(x)}{x^2-1}$,
+\item $\lim\limits_{x\to 0} (1+x)^{\frac{1}{x}}$.
+\end{enumerate}
+\end{multicols}
+
+\section{Primitives et intégrales}
+
+\exo{}{\coeur}
+
+Calculez les intégrales suivantes :
+
+\begin{enumerate}
+\item $\int_0^1\frac{3x^2}{4x^3+1}\dd x$,
+\item $\int_0^{\pi/2}\frac{1}{\cos^2(x)}\dd x$,
+\item $\int_1^3\frac{1}{(3x+5)^3}\dd x$
+\item $\int_0^1\frac{x}{(x^2-4)^2}\dd x$
+\item $\int_1^2(x^2-4x+5)^4(x-2)\dd x$
+\end{enumerate}
+
+
+\exo{}{}
+
+Calculez une primitive des fonctions qui à $x$ associent :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $\frac{e^x+1}{e^x+x}$
+\item $\frac{1}{\sqrt{3x+1}}$
+\item $\frac{\sin(x)}{\cos(x)^4}$
+\item $x\cos(3x^2)$
+\item $f(x)=\frac{\ln(x)}{x}$
+\item $f(x)=\frac{1}{x\ln(x)}$
+\end{multicols}
+\end{enumerate}
+
+
+
+\exo{}{\ccoeur}
+
+Calculer dans chacun des cas suivants le terme général de la suite $(u_n)$ :
+
+\begin{enumerate}[a)]
+\item $u_0=1$ et $u_{n+1}=u_n+3$
+\item $u_0=3$ et $u_{n+1}=2u_n$
+\item $u_0=0$ et $u_{n+1}=u_n-5$
+\item $u_0=2$ et $u_{n+1}=-u_n$
+\item $u_0=1$ et $u_{n+1}=\frac{u_n}{2}$
+\end{enumerate}
+
+
+
+\exo{}{\coeur}
+
+Calculer (en fonction de $n$ le cas échéant) les sommes suivantes :
+
+\begin{enumerate}[a)]
+\item $1+2+3+4+\cdots+n$
+\item $1+4+7+10+13+\cdots+37$
+\item $3+5+7+9+11+\cdots+2015$
+\item $1+2+4+8+\cdots+2^n$
+\item $1+\frac12+frac14+\frac{1}{8}+\cdots+\frac{1}{2^{10}}$
+\item $3-1+\frac{1}{3}-\frac{1}{9}+\cdots +3\frac{1}{(-3)^n}$
+\end{enumerate}
+
+\section{Primitives et Intégrales}
+
+
+\exo{}{\coeur}
+
+Calculez les intégrales suivantes à l'aide d'une intégration par parties :
+
+\begin{enumerate}[a)]
+\item $\int_{\pi/2}^\pi x\sin(x)d x$
+\item $\int_0^1 xe^xd x$
+\item $\int_1^e \ln(x) d x$
+\end{enumerate}
+
+
+\exo{}{\trefle}
+Calculez dans chaque cas une primitive des fonctions définies par les formules suivantes. Vous  aurez parfois besoin d'une intégration par parties, parfois pas.
+
+\begin{multicols}{2}
+\begin{enumerate}[a)]
+\item $x\cos(x)$ (dériver $x$ et intégrer $\cos$)
+\item $x^2\sin(x)$ (se ramener à l'exemple précédent)
+\item $x^2e^x$ (se ramener à $xe^x$)
+\item $\sin(5x)-2\cos(3x)+4\sin(2x)$ 
+\item $\frac{x}{e^x}$
+\item $\frac{x}{(x^2-4)^2}$
+\item $(2x+1)e^x$,
+\item $\sin(x)\cos(x)^3$
+\item $x\ln(x)$
+\item $x^2\ln(x)$
+\item $\cos(x)^2$
+\end{enumerate}
+\end{multicols}
+
+\section{Equations différentielles}
+
+\exo{}{\ccoeur}
+
+Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $y'+2y=0$
+\item $2y'-4y=1$
+\item $3y'+2y=4$
+\item $5y'+2y=-4$
+\item $y'-4y=\frac{1}{2}$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+
+Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $y'-2y=e^x$
+\item $y'+2y=e^{-2x}$
+\item $y'-5y=2x+1$
+\item $y'-y=2\cos(x)+\sin(2x)$
+\item $2y'-y=x^2$
+\item $y''-2y'=1$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+
+Résoudre les équations différentielles suivantes :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item $y'-xy=0$
+\item $y'-x^2y=0$
+\item $2y'-e^x y=0$
+\item $y'+\cos(2x)y=0$
+\item $y'-\ln(x)y=0$.
+\end{multicols}
+\end{enumerate}
+
+
+
+\begin{exo}{}{}
+Calculez les dérivées des fonctions $f$ définies par:
+
+
+\begin{enumerate}[(a)]
+\item $  f(x)=\frac{e^x \ln(x) }{x^2+2x^3}$,%$f'(x) = \frac{e^x ((2 x^2-5 x-2) \ln(x)+2 x+1)}{x^3 (2 x+1)^2}$
+\item $ f(x)= 3^x \sin x $,% $f'(x)=3^x (\cos(x)+\ln(3) \sin(x))$
+\item $ f(x)= \frac{x\ln x}{x^2-1}$, %$f'(x)= \frac{x^2-(x^2+1) \ln(x)-1}{x^2-1}^2$.
+\item $f(x)=\frac{4\cos^2(x)-3}{2\cos(x)}$, %$f'(x) = -2 \sin(x)- \frac{3}{2} \frac{\sin(x)}{\cos(x)^2}$
+\item $f(x)=(x^4-x^2+5)^4$, %$f'(x) = 8 x (2 x^2-1) (x^4-x^2+5)^3$
+\item $f(x)=\frac{1}{\sqrt{x-3}}$, %$f'(x) = -\frac{1}{2 (x-3)^{3/2}}$
+\item $f(x)=(\ln(x))^3$,% $f'(x) = 3 \frac{\ln^2(x)}{x} $
+\item $f(x)=(x^2+x+1)e^x$, %$f'(x) = e^x (x^2+3 x+2) $
+\item $f(x)=\frac{-3x^2+4x-1}{x^2+2x+5}$, %$f'(x) = -2 \frac{5 x^2+14 x-11)}{x^2+2 x+5}^2$
+\item $f(x)=(1-x)\sqrt{x+1}$, %$f'(x) = \frac{-3 x-1}{2 \sqrt{x+1}} $
+\item $f(x)=\ln(\frac{2x-1}{x-3})$,% $f'(x) = -\frac{5}{2 x^2-7 x+3}$
+\item $f(x)=\sqrt{(\ln(x))^2 +1}$,% $f'(x) = \frac{\ln(x)}{x \sqrt{\ln^2(x)+1}}$
+\item $f(x)=\ln(e^{2x}-1)$, %$f'(x) = \frac{(2 e^{2 x}}{e^{2 x}-1} $
+\item $f(x)=\ln(x+\sqrt{x^2+1})$, %$f'(x) = \frac{1}{\sqrt{x^2+1}}$
+\item $f(x)=x\sqrt{\frac{x-1}{x+1}}$
+\end{enumerate}
+\end{exo}
+
+
+\section{Complexes}
+
+\exo{}{}
+
+Calculez la partie réelle et la partie imaginaire des nombres complexes suivants:
+
+
+\begin{enumerate}[a)]
+\begin{multicols}{3}
+\item $\frac{1}{1-i}$
+\item $\frac{1+i}{3-4i}$
+\item $\frac{2-i}{3+i}$
+\item $\frac{3-i}{2+4i}$
+\item $\frac{2-2i}{4+5i}$
+\item $\frac{5+2i}{1-3i}$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{}
+
+Mettre sous forme trigonométrique :
+
+\begin{enumerate}[a)]
+\begin{multicols}{2}
+\item $\frac12+\frac{\sqrt 3}2i$
+\item $\frac {\sqrt 2}2+\frac{\sqrt 2}{2}i$
+\item $i$
+\item $1+i$
+\item $1-\sqrt 3i$
+\item $\sqrt 3+i$
+\item $\frac{i}{1+\sqrt 3i}$
+\end{multicols}
+\end{enumerate}
+
+
+\begin{exo}{}{\coeur}
+Ecrire la définition de $f=o_{x\to-\infty}(g)$.
+\end{exo}
+
+
+\exo{Problème d'étagères}{\ccoeur}
+
+
+Madame Michon veut concevoir des \'etag\`eres pour ranger ses livres. Elle constate que
+\begin{itemize}
+\item Un dictionnaire et deux BD occupent une largeur de 5 cm.
+\item Trois dictionnaires et une BD occupent une largeur de 10 cm.
+\end{itemize}
+\medskip
+
+\question D\'eterminer l'\'epaisseur d'un dictionnaire et celle d'une BD.
+
+\question Trouver la largeur de l'\'etag\`ere que doit bricoler Madame Michon pour ranger cinq dictionnaires et dix BD.
+
+\exo{Problème de bonbons}{\coeur}
+
+
+ Une usine de  bonbons a dans ses ateliers deux colorants chimiques appel\'es $C_1$ et $C_2$.\begin{itemize}\item  Pour fabriquer un sachet de bonbons \`a la fraise l'usine utilise un tube de colorant $C_1$ et deux tubes de colorant $C_2$. \item Pour fabriquer un sachet de bonbons \`a la banane l'usine utilise deux tubes de colorant $C_1$ et un tube de colorant $C_2$. \end{itemize}
+
+\question De combien de tubes de colorants $C_1$ et $C_2$ a-t-on besoin pour produire 100 sachets de bonbons \`a la fraise et 200 \`a la banane ? 
+
+\question L'usine dispose d'un stock de 31 tubes de colorant $C_1$ et 20 tubes de colorant $C_2$. Calculer le nombre de sachets de bonbons \`a la fraise et le  nombre de sachets de bonbons \`a la banane dont la fabrication provoquera l'\'epuisement total des stocks.
+
+\exo{Problème de valise}{\coeur}
+
+
+Monsieur Dupont pr\'epare ses bagages pour un voyage d'affaires. Il constate que
+
+\begin{itemize}
+\item Une veste, deux pull et trois pantalons occupent un volume de 39 litres. 
+
+\item Une veste,  trois pull et deux pantalons occupent  un volume  de 34 litres.
+
+
+\item Trois vestes, deux pull et un pantalon occupent un volume de 29 litres.
+
+\end{itemize}
+\medskip
+
+\question Quel est le volume occup\'e par une veste, par un pull, et par un pantalon ? 
+
+\question  Monsieur Dupont poss\`ede une seule petite valise de 20 litres. Sachant que ses affaires de toilette occupent un volume de trois litres, quel est le nombre maximal de pantalons qu'il peut emporter ? 
+
+\question  Peut-il emporter plusieurs pulls ?
+
+\newpage
+
+\exo{Systèmes à paramètres}{\coeur} 
+
+
+
+\question D\'eterminer suivant les valeurs du param\`etre $m$ les solutions des syst\`emes suivants :
+\begin{equation*}
+\begin{split}& a) \begin{cases}
+x-2y=2\\
+-x+my=-m
+\end{cases}\quad \quad \quad \quad  b) \begin{cases}
+x+my=2\\
+mx+y=2
+\end{cases}\\
+&c) \begin{cases}
+mx+(1-m)y=m\\
+mx+my=m
+\end{cases}\quad \quad d) \begin{cases}
+mx+(1-m)y=1\\
+(1-m)x-my=m.
+\end{cases}
+\end{split}
+\end{equation*}
+
+\question D\'eterminer suivant les valeurs du param\`etre $m$ les solutions des syst\`emes suivants :
+
+$
+\begin{cases}
+mx+(m-1)y=1\\
+x+(1-m)y=2m
+\end{cases} \\
+$
+
+\exo{Système à paramètres}{\trefle} 
+
+\question Soient $m$ et $n$ deux nombres r\'eels. R\'esoudre le syst\`eme 
+\begin{equation*}
+\begin{cases}
+mx+nz=mn\\
+nz=m\\
+x+y+z=1\end{cases}\end{equation*}
+dans les deux cas suivants :
+\begin{itemize}
+\item $m\neq 0$ et $n\neq 0$ ;
+\item $m=0$.\end{itemize}
+
+
+\exo{Systèmes à trois inconnues}{\coeur} 
+
+
+\noindent R\'esoudre les syst\`emes suivants :
+
+\begin{equation*}\begin{split}
+& a) \begin{cases} x-2y+3z=5\\
+2x-4y+z=5\\
+3x-5y+2z=8\end{cases} \quad \quad
+ b) \begin{cases}x+2y-z=5\\
+ 2x+y+z=10\\x+2z=0\end{cases} \\
+ & c) \begin{cases}
+ 2x+y+z=7\\
+ 4x+3y-3z=7\\
+ 3x+y-2z=2
+ \end{cases}\end{split}
+\end{equation*}
+
+\exo{Système à quatre inconnues}{\trefle}
+
+\medskip \noindent R\'esoudre les syst\`emes suivants :
+
+\begin{equation*}
+ a) \begin{cases} x+2y-z+t=1\\
+x+3y+z-t=2\\
+-x+y+7z+2t=3\\
+2x+y-8z+t=4\end{cases} \quad \quad
+ b) \begin{cases}x-y+z+t=3\\
+5x+2y - z-3t=5\\
+-3x-4y+3z+2t=1\\
+6x+y-2t=8\end{cases} 
+\end{equation*}
+
+\exo{}{\coeur}
+
+\question Pour chacun des systèmes suivants, écrire la matrice associée et trouver l'ensemble des solutions.
+\begin{equation*}\begin{split}
+& a) \begin{cases} x-y+3z=2\\
+-x+4y+z=-1\\
+3x-2y-3z=4\end{cases} \quad \quad \quad
+ b) \begin{cases}2x+y-z=3\\
+ x-y+z=2\\x+y+2z=0\end{cases} \\
+ & c) \begin{cases}
+ -y+z=1\\
+ -5x+2y-z=-1\\
+ x-2z=4
+ \end{cases}\quad \quad 
+d) \begin{cases}
+y-2z=3\\
+-2x-3y+z=2\\
+3x+y-2z=0.
+\end{cases}
+\end{split}
+\end{equation*}
+
+
+
+\exo{Systèmes à 4 inconnues}{\coeur}
+
+\medskip
+
+\noindent Pour chacun des systèmes suivants, écrire la matrice associée et trouver l'ensemble des solutions.
+\begin{equation*}\begin{split}
+& a) \begin{cases} 
+x-y-z-t=3\\
+2x-z+3t=9\\
+3x+3y+2z=4\\
+-x-2y+z-t=0
+\end{cases} \quad \quad 
+ b) \begin{cases}x-2y+z+t=-2\\
+2x-y-z-t=-1\\
+x+y+z+t=-8.
+\end{cases}
+\end{split}
+\end{equation*}
+
+
+\exo{Intersections}{\trefle} 
+
+\medskip
+
+\noindent On considère le plan muni d'un repère orthonormé $(O, \vec{i}, \vec{j})$. Soient $a$ et $b$ deux paramètres réels. Trouver l'ensemble des points d'intersection des droites $D_1$ et $D_2$, où :
+
+\textbullet \: $D_1$ est la droite passant par le point de coordonnées $(1,0)$ et de vecteur directeur $-a\vec{i}+\vec{j}$ ;
+
+\textbullet \: $D_2$ est la droite passant par le point de coordonnées $(1,0)$ et de vecteur directeur $-b\vec{i}+2\vec{j}$.
+
+\exo{Géométrie}{\trefle}
+
+\medskip
+
+\noindent On considère l'espace muni d'un repère orthonormé $(0,\vec{i},\vec{j},\vec{k})$. 
+Déterminer l'ensemble des points d'intersection des plans $P_1$, $P_2$ et $P_3$, où
+
+\textbullet \: $P_1$ est le plan passant par le point de coordonnées $(0,0,1)$ et de vecteur normal $-\vec{j}+\vec{k}$;
+
+\textbullet \: $P_2$ est le plan passant par le point de coordonnées $(0,1,0)$ et de vecteur normal $3\vec{i}+2\vec{j}-\vec{k}$;
+
+\textbullet \: $P_1$ est le plan passant par le point de coordonnées $(-1,0,0)$ et de vecteur normal $\vec{i}-2\vec{k}$.
+
+ \exo{Système 3x3}{}
+
+ \question Résoudre le système suivant :
+
+ $
+ \begin{cases}
+ x+y-2z=2\\
+ x-y+z=-1 \\
+ 2x-y-z=0
+ \end{cases}\\
+ $
+
+
+ \exo{}{}
+
+ D\'eterminer suivant les valeurs du param\`etre $m$ les solutions des syst\`emes suivants :
+
+ $
+ \begin{cases}
+ x+my=2\\
+ mx+y=2
+ \end{cases}\\
+ $
+
+ \exo{}{}
+ $
+ \begin{cases}
+ -ix+iy=-1-i\\
+ -ix-y=i-1
+ \end{cases} \\
+ $
+
+
+ 1 / D\'eterminer suivant les valeurs du param\`etre $m$ les solutions des syst\`emes suivants :
+
+ $
+ \begin{cases}
+ x+my=2\\
+ mx+y=2
+ \end{cases}\\
+ $
+ %
+ %\exo{}
+
+ \vspace{1cm}
+
+ 2/ Résoudre le système suivant :
+ $
+ \begin{cases}
+ -ix+iy=-1-i\\
+ -ix-y=i-1
+ \end{cases} \\
+ $
+ 1 / D\'eterminer suivant les valeurs du param\`etre $m$ les solutions des syst\`emes suivants :
+
+ $
+ \begin{cases}
+ mx+(m-1)y=1\\
+ x+(1-m)y=2m
+ \end{cases} \\
+ $
+
+ \vspace{1cm}
+
+ 2/ Résoudre le système suivant :
+
+ $
+ \begin{cases}
+ x+y-2z=2\\
+ x-y+z=-1 \\
+ 2x-y-z=0
+ \end{cases}\\
+ $
+
+
+ 1 / Le système S = 
+
+ $
+ \begin{cases}
+ mx+(m-1)y=1\\
+ x+(1-m)y=2m
+ \end{cases} \\
+ $ a pour solutions :
+
+ \begin{itemize}
+ \item si $m=1$ il n'y a pas de solution
+ \item si $m=-1$ il n'y a pas de solution
+ \item si $m\neq 1$ et $m\neq -1$, il existe une solution unique donnée par $(x,y)=(\frac{2m+1}{m+1},\frac{2m^2-1}{1-m^2}) $
+ \end{itemize}
+
+ %
+ %\exo{}
+
+ \vspace{1cm}
+
+ 2/ Le système $
+ \begin{cases}
+ x+y-2z=2\\
+ x-y+z=-1 \\
+ 2x-y-z=0
+ \end{cases}\\
+ $
+ a pour solution (1/3,1,-1/3).
+
+
+
+ \exo{}{\ccoeur}
+
+ \medskip
+
+ \noindent Madame Michon veut concevoir des \'etag\`eres pour ranger ses livres. Elle constate que
+ \begin{itemize}
+ \item Un dictionnaire et deux BD occupent une largeur de 5 cm.
+ \item Trois dictionnaires et une BD occupent une largeur de 10 cm.
+ \end{itemize}
+ \medskip
+
+ (1) D\'eterminer l'\'epaisseur d'un dictionnaire et celle d'une BD.
+
+ \medskip
+
+ (2) Trouver la largeur de l'\'etag\`ere que doit bricoler Madame Michon pour ranger cinq dictionnaires et dix BD.
+
+
+
+ \exo{}{\coeur}
+
+ \medskip
+
+ \noindent Une usine de  bonbons a dans ses ateliers deux colorants chimiques appel\'es $C_1$ et $C_2$.\begin{itemize}\item  Pour fabriquer un sachet de bonbons \`a la fraise l'usine utilise un tube de colorant $C_1$ et deux tubes de colorant $C_2$. \item Pour fabriquer un sachet de bonbons \`a la banane l'usine utilise deux tubes de colorant $C_1$ et un tube de colorant $C_2$. \end{itemize}
+
+ \medskip
+
+
+
+ (1) De combien de tubes de colorants $C_1$ et $C_2$ a-t-on besoin pour produire 100 sachets de bonbons \`a la fraise et 200 \`a la banane ? 
+
+ \medskip
+
+ (2) L'usine dispose d'un stock de 31 tubes de colorant $C_1$ et 20 tubes de colorant $C_2$. Calculer le nombre de sachets de bonbons \`a la fraise et le  nombre de sachets de bonbons \`a la banane dont la fabrication provoquera l'\'epuisement total des stocks.
+
+
+
+
+
+ \exo{}{\coeur}
+
+ \medskip
+
+ \noindent Monsieur Dupont pr\'epare ses bagages pour un voyage d'affaires. Il constate que
+
+ \begin{itemize}
+ \item Une veste, deux pull et trois pantalons occupent un volume de 39 litres. 
+
+ \item Une veste,  trois pull et deux pantalons occupent  un volume  de 34 litres.
+
+
+ \item Trois vestes, deux pull et un pantalon occupent un volume de 29 litres.
+
+ \end{itemize}
+ \medskip
+
+ (1) Quel est le volume occup\'e par une veste, par un pull, et par un pantalon ? 
+
+ (2) Monsieur Dupont poss\`ede une seule petite valise de 20 litres. Sachant que ses affaires de toilette occupent un volume de trois litres, quel est le nombre maximal de pantalons qu'il peut emporter ? 
+
+
+ (3) Peut-il emporter plusieurs pulls ?
+
+
+
+ \newpage
+
+
+
+ \exo{}{\coeur} 
+
+ \medskip
+
+
+ \noindent D\'eterminer suivant les valeurs du param\`etre $m$ les solutions des syst\`emes suivants :
+ \begin{equation*}
+ \begin{split}& a) \begin{cases}
+ x-2y=2\\
+ -x+my=-m
+ \end{cases}\quad \quad \quad \quad  b) \begin{cases}
+ x+my=2\\
+ mx+y=2
+ \end{cases}\\
+ &c) \begin{cases}
+ mx+(1-m)y=m\\
+ mx+my=m
+ \end{cases}\quad \quad d) \begin{cases}
+ mx+(1-m)y=1\\
+ (1-m)x-my=m.
+ \end{cases}
+ \end{split}
+ \end{equation*}
+
+ \exo{}{\coeur} 
+
+ \medskip
+
+ \noindent R\'esoudre les syst\`emes suivants :
+
+ \begin{equation*}\begin{split}
+ & a) \begin{cases} x-2y+3z=5\\
+ 2x-4y+z=5\\
+ 3x-5y+2z=8\end{cases} \quad \quad
+  b) \begin{cases}x+2y-z=5\\
+  2x+y+z=10\\x+2z=0\end{cases} \\
+  & c) \begin{cases}
+  2x+y+z=7\\
+  4x+3y-3z=7\\
+  3x+y-2z=2
+  \end{cases}\end{split}
+ \end{equation*}
+
+ \exo{}{\trefle}
+
+ \medskip \noindent R\'esoudre les syst\`emes suivants :
+
+ \begin{equation*}
+  a) \begin{cases} x+2y-z+t=1\\
+ x+3y+z-t=2\\
+ -x+y+7z+2t=3\\
+ 2x+y-8z+t=4\end{cases} \quad \quad
+  b) \begin{cases}x-y+z+t=3\\
+ 5x+2y - z-3t=5\\
+ -3x-4y+3z+2t=1\\
+ 6x+y-2t=8\end{cases} 
+ \end{equation*}
+
+ \exo{}{\trefle} 
+
+
+ \medskip
+
+
+ \noindent Soient $m$ et $n$ deux nombres r\'eels. R\'esoudre le syst\`eme 
+ \begin{equation*}
+ \begin{cases}
+ mx+nz=mn\\
+ nz=m\\
+ x+y+z=1
+ \end{cases}
+ \end{equation*}
+ dans les deux cas suivants :
+ \begin{itemize}
+ \item $m\neq 0$ et $n\neq 0$ ;
+ \item $m=0$.
+ \end{itemize}
+ 
+ \exo{}{\coeur}
+
+ \medskip
+
+ \noindent Pour chacun des systèmes suivants, écrire la matrice associée et trouver l'ensemble des solutions.
+ \begin{equation*}\begin{split}
+ & a) \begin{cases} x-y+3z=2\\
+ -x+4y+z=-1\\
+ 3x-2y-3z=4\end{cases} \quad \quad \quad
+  b) \begin{cases}2x+y-z=3\\
+  x-y+z=2\\x+y+2z=0\end{cases} \\
+  & c) \begin{cases}
+  -y+z=1\\
+  -5x+2y-z=-1\\
+  x-2z=4
+  \end{cases}\quad \quad 
+ d) \begin{cases}
+ y-2z=3\\
+ -2x-3y+z=2\\
+ 3x+y-2z=0.
+ \end{cases}
+ \end{split}
+ \end{equation*}
+
+ \exo{}{\coeur}
+
+ \medskip \noindent R\'esoudre les syst\`emes suivants à coefficients dans $\mathbb{C}$ :
+
+ \begin{equation*}\begin{split}&
+  a) \begin{cases}
+ x-iy=1\\ix-y=1
+ \end{cases} \quad \quad \quad\quad \quad
+  b) \begin{cases}
+ -ix+iy=-1-i\\
+ -ix-y=i-1
+ \end{cases} \\
+ &c)  \begin{cases}
+ (i-2)x+y=i\\
+ ix-(1+i)y=1+3i
+ \end{cases} \quad 
+  d) \begin{cases}
+ ix+y=i\\
+ -x+iy=-1.
+ \end{cases} 
+ \end{split}
+ \end{equation*}
+
+
+ \exo{}{\coeur}
+
+ \medskip
+
+ \noindent Pour chacun des systèmes suivants, écrire la matrice associée et trouver l'ensemble des solutions.
+ \begin{equation*}\begin{split}
+ & a) \begin{cases} 
+ x-y-z-t=3\\
+ 2x-z+3t=9\\
+ 3x+3y+2z=4\\
+ -x-2y+z-t=0
+ \end{cases} \quad \quad 
+  b) \begin{cases}x-2y+z+t=-2\\
+ 2x-y-z-t=-1\\
+ x+y+z+t=-8.
+ \end{cases}
+ \end{split}
+ \end{equation*}
+
+
+
+
+ \exo{}{\trefle} 
+
+
+ \medskip
+
+
+ \noindent On considère le plan muni d'un repère orthonormé $(O, \vec{i}, \vec{j})$. Soient $a$ et $b$ deux paramètres réels. Trouver l'ensemble des points d'intersection des droites $D_1$ et $D_2$, où :
+
+ \textbullet \: $D_1$ est la droite passant par le point de coordonnées $(1,0)$ et de vecteur directeur $-a\vec{i}+\vec{j}$ ;
+
+ \textbullet \: $D_2$ est la droite passant par le point de coordonnées $(1,0)$ et de vecteur directeur $-b\vec{i}+2\vec{j}$.
+
+
+ \exo{}{\trefle}
+
+ \medskip
+
+
+ \noindent On considère l'espace muni d'un repère orthonormé $(0,\vec{i},\vec{j},\vec{k})$. 
+ Déterminer l'ensemble des points d'intersection des plans $P_1$, $P_2$ et $P_3$, où
+
+ \textbullet \: $P_1$ est le plan passant par le point de coordonnées $(0,0,1)$ et de vecteur normal $-\vec{j}+\vec{k}$;
+
+ \textbullet \: $P_2$ est le plan passant par le point de coordonnées $(0,1,0)$ et de vecteur normal $3\vec{i}+2\vec{j}-\vec{k}$;
+
+ \textbullet \: $P_1$ est le plan passant par le point de coordonnées $(-1,0,0)$ et de vecteur normal $\vec{i}-2\vec{k}$.
+
+
+\exo{}{\ccoeur}
+
+
+\begin{enumerate}[a)]
+\item en $0$, $\exp(\sqrt{1+x})\sim e$ (c'est simplement la limite)
+\item en $+\infty$, $\frac{5x^3+3\ln(x)+2x}{4x^4+3x^2+1}\sim\frac{5}{4x}$ (pour le voir, on factorise par les termes de plus haut degré)
+\item en $0$,  $\frac{5x^3+3\ln(x)+2x}{4x^4+3x^2+1}\sim {3\ln(x)}$ (le dénominateur tend vers 1, et le numérateur est équivalent à $\ln(x)$.
+\item en $1$, $\ln(x)\sim x-1$ (en effet, $\ln(1+(x-1))=(x-1)+o(x-1)$ d'après les formules de DL.)
+\item en $+\infty$, $\ln(x+1)-\ln(x)=\ln(1+\frac1x)\sim \frac1x$ d'après les formules de DL.
+\end{enumerate}
+
+
+\exo{}{\coeur}
+
+Dans cet exercice, il s'agit de faire des développements limités jusqu'au premier ordre non nul.
+
+\begin{enumerate}[a)]
+\item en $0$, $\ln(\cos(x))=\ln(1-x^2/2+o(x^2))\sim -x^2/2$ 
+\item en $0$, $\ln(1+x)-\sqrt{x+1}-1=x-(1+x/2)-1+o(x)\sim3x/2$ %3x/2
+\item en $0$, $\frac{\sqrt{1+x}-\sqrt{1-x}}{x}-1\sim x^2/8$ %x^2/8
+\item en $0$, $\frac{\sin(x)-x}{e^{2x}+1-2e^{2x}}\sim -x/6$ %-x/6
+\end{enumerate}
+
+\exo{}{\coeur}
+
+On utilise les même techniques que précédemment. On 
+
+\begin{enumerate}[a)]
+\begin{multicols}{2}
+\item $u_n=\frac{n^2+2n\sin(n)+1}{2n^3-3n^2+1}\sim \frac{1}{2n}$
+\item $u_n=2^{\frac1n}-1=\exp(\ln(2)/n)-1=1+\ln(2)/n-1+o(1/n)\sim\ln(2)/n$
+\item $u_n=\frac{1}{n-1}+\frac{1}{n+1}$
+\item $u_n=n\sin(\frac{1}{n^2})$.
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\trefle}
+
+\question On sait que $f/g\to 1$, ou que $f=g+o(g)$. On a donc $\ln(f)=\ln(g+o(g))=\ln(g)+\ln(1+o(1))$. Par définition, $\ln(1+o(1))$ tend vers $0$. Vu que $\ln(g)$ ne tend pas vers $0$, on a donc $\ln(1+o(1))/\ln(g)\to 0$, c'est-à-dire $\ln(1+o(1))=o(\ln(g))$.
+
+Donc $\ln(f)=\ln(g)+o(\ln(g))$, c'est-à-dire $\ln(f)\sim\ln(g)$.
+
+
+\question On a $g\sim 1$ et $f\sim 1$ donc $g\sim f$.
+
+D'autre part, $\ln(g(x))=x$ et $\ln(f(x))=\ln(1+x^2)\sim x^2$. Donc $\ln(g)$ n'est pas équivalent à $\ln(f)$.
+
+\exo{}{\trefle}
+
+Soit $(u_n)$ la suite définie par récurrence par 
+$$\begin{cases}
+u_0=0\\
+u_{n+1}=\sqrt{u_n+n+1}
+\end{cases}$$
+
+\question On montre par récurrence que $u_n\geq 0$, et donc que la formule définissant $u_{n+1}$ a bien un sens.
+
+ Initialisation : OK
+
+Hérédité : Par hypothèse de récurrence, $u_n\geq 0$, donc $u_{n+1}$ peut bien se calculer, et comme $u_{n+1}$ est une racine, on en déduit que $u_{n+1}\geq 0$.
+
+On a donc $u_n\geq 0$ pour tout $n$. En particulier, pour tout $n\geq 1$, on a $u_n=\sqrt{u_{n-1}+n}\geq \sqrt{n}$.
+
+\question En élevant au carré, on voit que l'on veut démontrer que $n+2+\sqrt{n}\leq 2+2\sqrt{n+1}+n$. En simplifiant, cette inégalité est équivalente à $\sqrt n\leq 2\sqrt{n+1}$, qui est toujours vraie.
+
+On démontre maintenant par récurrence que $u_n\leq \sqrt{n}+1$ :
+
+Initialisation : On a bien $u_0=1\leq 1$.
+
+Hérédité : supposons que $u_n\leq \sqrt{n}+1$, avec $n\geq 4$. Alors on a $u_{n+1}=\sqrt{u_n+n+1}\leq \sqrt{\sqrt{n}+n+2}$ par hypothèse de récurrence, donc $u_{n+1}\leq \sqrt{n+1}+1$ d'après l'inégalité démontrée ci-dessus.
+
+Donc on a bien pour tout $n$, $u_n\leq \sqrt n$.
+
+\question On a donc $1\leq \frac{u_n}{\sqrt n}\leq 1+\frac{1}{\sqrt n}$. Donc $u_n/\sqrt n$ tend vers $1$, c'est-à-dire que $u_n\sim \sqrt n$.
+
+\exo{}{\ttrefle}
+
+Soit $(u_n)$ une suite telle que $\lim (u_{n+1}-u_n)=a$, avec $a>0$. Démontrer que $u_n\sim na$. 
+
+  \exo{Exemples de fonction dominée par une autre en 0}{\coeur}
+  
+  \question Pouvez-vous donner des fonctions $f$ et $g$ telles que $f$ soit dominée par $g$ en 0? 
+
+  \exo{Exemples de fonction dominée par une autre en $+\infty$}{\coeur}
+  
+  \question Pouvez-vous donner des fonctions $f$ et $g$ telles que $f$ soit dominée par $g$ en  $+\infty$? 
+
+  \exo{Exemples de suite dominée par une autre}{\coeur}
+  
+  \question Pouvez-vous donner des suites $(u_n)$ et $(v_n)$ telles que $(u_n)$ soit dominée par $(v_n)$? 
+
+  \exo{Exemples de fonction négligeable devant une autre en 0}{\coeur}
+  
+  \question Pouvez-vous donner des fonctions $f$ et $g$ telles que $f$ soit négligeable devant $g$ en 0? 
+
+\exo{Exemples de fonction négligeable devant une autre en $+\infty$}{\ccoeur}
+  
+\question Pouvez-vous donner des fonctions $f$ et $g$ telles que $f$ soit négligeable devant $g$ en $+\infty$ ? 
+
+\begin{exo}{}{\coeur}
+Ecrire la définition de $f=o_{x\to-\infty}(g)$.
+\end{exo}
+
+  \exo{Exemples de fonctions équivalentes en 0}{\coeur}
+  
+  \question Pouvez-vous donner des fonctions $f$ et $g$ équivalentes en 0 ? 
+
+  \exo{Exemples de fonctions équivalentes en $+\infty$}{\coeur}
+  
+  \question Pouvez-vous donner des fonctions $f$ et $g$ équivalentes en $+\infty$ ? 
+
+  \exo{Exemples de suites équivalentes en $+\infty$}{\coeur}
+  
+  \question Pouvez-vous donner des suites $(u_n)$ et $(v_n)$ équivalentes en $+\infty$ ? 
+
+
+\exo{}{\ccoeur}
+
+Donner un équivalent simple au voisinage du point demandé :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item en $+\infty$, $x+1+\ln(x)$
+\item en $0$, $x+1+\ln(x)$
+\item en $0$, $\ln(\sin(x))$
+\item en $0$, $\cos(\sin(x))$.
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\ccoeur}
+
+Expliquer pourquoi on a, pour tout $n\geq 0$:
+
+\begin{enumerate}
+\item $\frac{1}{x^n}=o(1)$, quand $x$ tend vers $+\infty$
+\item $\ln(x)=o(x^n)$, quand $x$ tend vers $+\infty$
+\item $x^n=o(e^x)$, quand $x$ tend vers $+\infty$
+\item $\frac{\cos(x)}{1+x}=O(\frac{1}{1+x})$, en n'importe quel point
+\item $\frac{5x^4+2x^2+4}{3x+2}=O(x^3)$, quand $x$ tend vers $+\infty$
+\end{enumerate}
+
+
+\exo{}{\coeur}
+
+Déterminer un équivalent simple au voisinage du point précisé des fonctions suivantes :
+
+\begin{enumerate}
+\begin{multicols}{2}
+\item en 0, $\sqrt{1+x}-\sqrt{1-x}$
+\item en 0, $2e^x-\sqrt{1+4x}-\sqrt{1+6x^2} $
+\item en $+\infty$, $\sqrt{x+1}-\sqrt{x}$
+%\item (\trefle) en $0$, $\cos(x)^{\sin(x)}-\cos(x)^{\tan(x)}$
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+Démontrer que l'on a :
+
+\begin{enumerate}
+\item en $+\infty$, $\ln(x+1)=\ln(x)+\frac{1}{x}-\frac{1}{2x^2}+o(\frac{1}{x})$,
+\item au voisinage de $0$, $\frac{1}{x+\ln(x)}=\frac{1}{\ln(x)}-\frac{x}{(\ln(x))^2}+\frac{x^2}{(\ln(x))^3}+o(x^2)$, 
+\item en $+\infty$, $x\ln(x+1)-(x+1)\ln(x)=-\ln(x)+1+o(1)$
+\end{enumerate}
+
+\exo{}{\coeur}
+Démontrer que, lorsque $x\to+\infty$, on a
+\begin{enumerate}
+\item $\sqrt{x+\sqrt x}-\sqrt x=\frac{1}{2}-\frac{1}{8\sqrt x}+\frac{1}{16x}+o(\frac{1}{x})$
+\item $\left( 1+\frac{1}{x} \right)^x=e-\frac{e}{2x}+\frac{11e}{24x^2}+o(\frac{1}{x^2})$
+\end{enumerate}
+%
+%\exo{}{\coeur}
+%
+%Soit $p,q\in\RR$. Donner un équivalent en $+\infty$ de
+%$$ \sqrt{x^2+x+1}-\sqrt[3]{x^3+px^2+q}.$$
+
+
+\exo{}{\trefle}
+
+Soit $S_n=\sum_{k=0}^n k!$. 
+
+\question Montrer que, pour $k$ entre $0$ et $n-2$, on a $\frac{k!}{n!}\leq \frac{1}{n(n-1)}.$
+
+\question En déduire que $S_n\sim n!$.
+
+\exo{}{\ttrefle}
+
+On note $H_n=\sum_{k=1}^n\frac{1}{k}$.
+
+\question Démontrer que, pour tout $x>-1$, on a 
+\begin{equation}\tag{*}
+\ln(1+x)\leq x.
+\end{equation} 
+
+En prenant $x=\frac{t}{t+1}$, en déduire que l'on a
+
+\begin{equation} \tag{**}
+\ln(1+t)\geq \frac{t}{t+1}.
+\end{equation}
+
+\question Déduire de (*) que $\ln(n+1)\leq H_n$.
+
+En écrivant $\frac{1}{k+1}=\frac{1/k}{1+1/k}$, déduire de (**) que $$H_n\leq \ln(n)+1,$$
+puis donner un équivalent simple de $H_n$.
+
+\question Soit $u_n=H_n-\ln(n)$. Démontrer que $(u_n)$ est décroissante, puis qu'elle converge. \textit{La limite de $(u_n)$ s'appelle la \emph{constante d'Euler} et se note habituellement $\gamma$.}
+
+\section{Suites et fonctions implicites}
+
+\exo{}{\trefle}
+
+Pour $x\in\RR$, on pose $f(x)=xe^{x^2}$.
+
+\question Montrer que $f$ est une bijection de $\RR$ dans $\RR$. On note $g$ sa bijection réciproque. \textit{On ne cherche pas à calculer explicitement $g$, ce qui est d'ailleurs impossible}
+
+\question Calculer $f(0)$ et en déduire $g(0)$.
+
+\question On admet que $g$ est de classe $\mathcal{C}^\infty$. On pose $g(x)=a+bx+o(x)$ le développement limité de $g$ à l'ordre 1 en $0$. Déterminer $a$. Calculer en fonction de  $b$ le DL de $ f\circ g $ à l'ordre 1 en $0$
+
+\question En déduire $a$ et $b$.
+
+
+\question De la même manière, calculer le développement limité de $g$ à l'ordre 2,3,4 puis à l'ordre 5 en $0$.
+
+\textit{On pourra remarquer et utiliser le fait que $g$ est une fonction impaire.}
+
+
+\exo{}{\trefle}
+
+\question Montrer que l'équation $\tan(x)=x$ a une solution unique dans l'intervalle $]-\pi/2+n\pi,\pi/2+n\pi[$. On note cette solution $x_n$.
+
+\question Montrer que $x_n\sim n\pi$.
+
+\question Démontrer que, pour tout $x\neq 0$, on a $$\arctan(x)+\arctan(\frac{1}{x})=\frac{\pi}{2}.$$
+
+\question Vérifier que $x_n=\arctan(x_n)+n\pi$. En déduire que $\lim_{n\to+\infty}x_n-n\pi=\pi/2$.
+
+\question Démontrer que 
+$$x_n=n\pi+\frac{\pi}{2}-\frac{1}{n\pi}+\frac{1}{2n^2\pi}+o(\frac{1}{n^2}).$$
+
+\exo{}{\trefle}
+
+\question Montrer que l'équation $x+\ln(x)=n$ admet une solution unique $x_n$ sur $\RR^+_*$.
+
+\question Montrer que $x_n$ tend vers $+\infty$.
+
+\question Montrer que $$x_n=n+ \ln(n) - \frac{\ln(n)}{n}+o(\frac{\ln(n)}{n})$$
+
+\exo{}{\ccoeur}
+
+Donner un équivalent simple au voisinage du point demandé :
+
+\begin{enumerate}[a)]
+\begin{multicols}{2}
+\item en $0$, $\exp(\sqrt{1+x})$
+\item en $+\infty$, $\frac{5x^3+3\ln(x)+2x}{4x^4+3x^2+1}$
+\item en $0$,  $\frac{5x^3+3\ln(x)+2x}{4x^4+3x^2+1}$
+\item en $1$, $\ln(x)$
+\item en $+\infty$, $\ln(x+1)-\ln(x)$
+\end{multicols}
+\end{enumerate}
+
+
+\exo{}{\coeur}
+
+Donner un équivalent simple au voisinage du point demandé :
+
+\begin{enumerate}[a)]
+\begin{multicols}{2}
+\item en $0$, $\ln(\cos(x))$ 
+\item en $0$, $\ln(1+x)-\sqrt{x+1}-1$ %3x/2
+\item en $0$, $\frac{\sqrt{1+x}-\sqrt{1-x}}{x}-1$ %x^2/8
+\item en $0$, $\frac{\sin(x)-x}{e^{2x}+1-2e^{2x}}$ %-x/6
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\coeur}
+
+Donner un équivalent simple des suites suivantes :
+\begin{enumerate}[a)]
+\begin{multicols}{2}
+\item $u_n=\frac{n^2+2n\sin(n)+1}{2n^3-3n^2+1}$
+\item $u_n=\sqrt[n]{2}-1=2^{\frac1n}-1$
+\item $u_n=\frac{1}{n-1}+\frac{1}{n+1}$
+\item $u_n=n\sin(\frac{1}{n^2})$.
+\end{multicols}
+\end{enumerate}
+
+\exo{}{\trefle}
+
+\question Soient $f$ et $g$ deux fonctions strictement positives. On suppose que $f\sim g$ au voisinage d'un point $a\in\RR\cup\{+\infty,-\infty\}$, et que $\lim\limits_{x\to a} g(x)\neq 1$.
+
+Démontrer que $\ln(f(x))\sim\ln(g(x))$ au voisinage de $a$.
+
+\question On prend $g(x)=e^x$ et $f(x)=1+x^2$. Montrer que, au voisinage de $0$, on a $f\sim g$ mais que l'on n'a pas $\ln(f(x))\sim\ln(g(x))$.
+
+\exo{}{\trefle}
+
+Soit $(u_n)$ la suite définie par récurrence par 
+$$\begin{cases}
+u_0=0\\
+u_{n+1}=\sqrt{u_n+n+1}
+\end{cases}$$
+
+\question Calculer les trois premiers termes de la suite.
+
+\question Montrer par récurrence que $u_n$ est bien défini et que $u_n\geq 0$. En déduire que pour tout $n$ on a $u_n\geq \sqrt{n}$.
+
+\question Montrer que pour tout $n\geq 0$ on a $\sqrt{n+2+\sqrt{n}}\leq \sqrt{n+1}+1$ (penser à élever au carré). En déduire par récurrence que $u_n\leq \sqrt{n}+1$.
+
+\question En déduire un équivalent de $u_n$.
+
+\exo{}{\ttrefle}
+
+Soit $(u_n)$ une suite telle que $\lim (u_{n+1}-u_n)=a$, avec $a>0$. Démontrer que $u_n\sim na$. 
+
+\exo{Vrai ou faux}{\coeur}
+
+
+Les affirmations suivantes sont-elles vraies ou fausses ? Si elles sont vraies, les justifier. Si elles sont fausses, donner un contre-exemple.
+
+\begin{enumerate}[a)]
+
+\item Si $(u_n)$ est une suite vérifiant que $u_n=O(\frac{1}{n^2})$, alors on a $u_n=o(\frac{1}{n})$.
+
+
+\item Soit $a\in\RR\cup\{ +\infty,-\infty\}$. Si $\lim\limits_{x\to a}(f(x)-g(x))=0$, alors $f(x)\sim_{x\to a} g(x)$.
+
+\item Soit $a\in\RR\cup\{ +\infty,-\infty\}$. Si $f(x)\sim_{x\to a}g(x)$, alors $\lim\limits_{x\to a}(f(x)-g(x))=0$.
+
+\item Si $u_n\sim v_n$ alors $e^{u_n}\sim e^{v_n}$.
+
+\item Si $u_n\sim v_n$, et que $u_n\geq 0$ et $v_n\geq 0$, alors $\sqrt{u_n}\sim \sqrt{v_n}$.
+
+
+
+\end{enumerate}
+
+
+\exo{Continuité des fonctions}{\coeur}
+
+\question Pour trois fonctions définés de $\RR$ dans $\RR$, $f_1(x)=x, f_2(x)=x^2,f_3(x)=x^3$ appartenant à $\mathscr{C}^\infty(\RR,\RR)$.
+
+%\question Elles sont polynômiales donc elles appartiennent à $\mathscr{C}^\infty(\RR,\RR)$.
+
+\question $f(x)=| x |$ qui appartient à $\mathscr{C}^0(\RR,\RR)$ mais pas à $\mathscr{D}(\RR,\RR)$.
+
+\question $f(x)=\int{| x |}=\{\frac{x^2}{2}$ sur $\RR_+$ et $=-\frac{x^2}{2}$ sur $\RR_-$\}, appartient à $\mathscr{C}^1(\RR,\RR)$ mais pas à $\mathscr{D}^2(\RR,\RR)$.
+
+
+%\question $f(x)=\underbrace{\int\int...\int}_{n fois}| x |$ appartient à $\mathscr{C}^n(\RR,\RR)$ mais pas à $\mathscr{D}^{n+1}(\RR,\RR)$.
+
+
+\exo{}{\coeur}
+
+$\forall x\in\RR$ et $\forall n\in\NN$, on a $(e^x)^{(n)}=e^x$, 
+
+$\forall x\in\RR$ et $\forall n\in\NN$, on a $\cos^{(n)}(x)=\cos(x)$ si $n=0[4]$; $-\sin(x)$ si $n=1[4]$; $-\cos(x)$ si $n=2[4]$; $\sin(x)$ si $n=3[4]$; 
+
+$\forall x\in\RR$ et $\forall n\in\NN$, on a $\sin^{(n)}(x)=\sin(x)$ si $n=0[4]$; $\cos(x)$ si $n=1[4]$; $-\sin(x)$ si $n=2[4]$; $-\cos(x)$ si $n=3[4]$.
+
+\exo{}{\trefle}
+
+$\forall m\in\NN, \forall n\in\NN$ $(x^m)^{(n)}=(\prod_{k=0}^{n-1}(m-k)) \times x^{m-n}$.
+
+\exo{}{\coeur}
+
+Soit $a,b\in\RR$. On définit $f:\RR^+\to\RR$ par $f(x)=\sqrt x$ si $0\leq x\leq 1$ et $f(x)=ax^2+bx+1$ si $x>1$.
+
+\question On sait déjà que $f$ est continue sur $\RR_+\setminus\{1\}$. $f(1)=1$ donc $f$ est continue. Donc $f(x)\underset{x\to 1+}{\to}1$, donc $a\times 1^2+b\times 1+1=1 \Leftrightarrow a+b=0$.
+
+\question Pour que $f$ soit de classe $\mathcal C^1$ sur $\RR^+_*$, il faut que $f'$ soit continue. On sait que $\forall 0<x\leq 1$,$f'(x)=\frac{1}{2\sqrt{x}}$; et $\forall x>1$,$f'(x)=2ax+b$. $f'$ continue $\Leftrightarrow f$ est dans $\mathscr{C}^1(\RR_+^*,\RR)$, on a alors:$a+b=0$ et $2a+b=\frac{1}{2}$, donc $a=\frac{1}{2}$ et $b=-\frac{1}{2}$.
+
+$f(x)=\sqrt x$ si $0\leq x\leq 1$ et $f(x)=\frac{1}{2}x^2-\frac{1}{2}x+1$ si $x>1$
+
+
+\exo{}{\trefle}
+
+$f:\RR\to\RR$ définie par $f(x)=x^2\sin(\frac 1x)$ pour $x\neq 0$, et $f(0)=0$. 
+
+$|x^2\sin(\frac{1}{x})|\leq x^2$ donc $x^2\sin(\frac{1}{x})\underset{x\to 0}{\mapsto}0$, donc $f$ est continue sur $\RR$.
+
+ $f$ est dérivable sur $\RR^*$ et $f'(x)=2x\sin(\frac{1}{x})-\cos(\frac{1}{x})$sur $\RR^*$. On regarde si $f$ est dérivable en $0$. Pour cela, on regarde la limite (si elle existe) de $\frac{f(x)-f(0)}{x-0}$ en $0$. $\lim_{x\to 0} \frac{x^2\sin(\frac{1}{x})-0}{x-0}=0$, donc $f'(0)=0$. 
+Donc $f$ est dérivable, mais $2x\sin(\frac{1}{x})-\cos(\frac{1}{x})$ n'admet pas de limite en $0$, donc $f$ n'est pas de classe $\mathcal C^1$ : $f'$ n'est pas continue en $0$.
+
+\exo{}{\trefle}
+$f:\RR\to\RR$ définie par $f(x)=x^2+x^3\sin(\frac{1}{x^2})$ pour $x\neq 0$, et $f(0)=0$.
+
+\question $|x^3\sin(\frac{1}{x^2})|\leq |x^3|$ donc $x^3\sin(\frac{1}{x^2})\underset{x\to 0}{\mapsto}0$, donc $f$ et continue. $f$ est  dérivable sur $\RR^*$ et $f'=2x+2x^2\sin(\frac{1}{x^2})-2\cos(\frac{1}{x^2})$ sur $\RR^*$.
+
+\question Il faut regarder la limite (si elle existe) de $\frac{f(x)-f(0)}{x-0}$ en $0$. $\lim_{x\to 0} \frac{x+x^3\sin(\frac{1}{x^2})-0}{x-0}=1$, donc $f$ est également dérivable en $0$ et $f'(0)=1$. Par contre, $2x+2x^2\sin(\frac{1}{x^2})-2\cos(\frac{1}{x^2})$ n'admet pas de limite en $0$, donc $f'$ n'est pas continue en $0$, autrement dit, $f$ n'appartient pas à $\mathscr{C}^1(\RR,\RR)$. 
+
+
+\question Si $f'$ admet un DL d'ordre $n$ en $0$, alors $f'$ est continue en $0$, ce qui n'est pas le cas.
+
+\question En posant $\eps(x)=x\sin(1/x^2)$, on a bien $\eps(x)$ qui tend vers $0$ quand $x$ tend vers $0$, et $f(x)=x^2+x^2\eps(x)$. Donc $f$ admet un DL d'ordre 2 en $0$.
+
+\exosd{}
+
+\question 
+
+\squestion $f$ est impaire donc $f(-x)=-f(x)$ pour tout $x\in I$. En particulier, en prenant $x=0$, on a $f(0)=-f(0)$, donc $f(0)=0$.
+
+\squestion On a $f(x)= a_0 + a_1 x+ a_2 x^2 +  a_3 x^3 +... + a_n x^n + \epsilon(x) x^n$. Donc $f(-x)= a_0 - a_1 x+ a_2 x^2 -  a_3 x^3 +... + (-1)^n a_n x^n + (-1)^n\epsilon(x) x^n$. Comme $f(-x)=-f(x)$, on a par identification (on a unicité d'un développement limité) $a_0=-a_0$, $a_1=a_1$, $a_2=-a_2$, etc., jusqu'à $a_n=(-1)^{n+1}a_n$.
+
+Par conséquent, on obtient que $a_0=0$, $a_2=0$, et tous les termes pairs sont nuls. On n'a par contre aucun renseignement sur les termes impairs.
+
+\question Si $f$ est paire, alors $f(-x)=f(x)$. Donc de la même façon on obtient $a_0=a_0$, $a_1=-a_1$, $a_2=a_2$, etc., jusqu'à $a_n=(-1)^{n}a_n$. Donc les termes impairs sont nuls.
+
+  \exo{Exemples de fonctions continues et non continues}{\coeur}
+  
+  \question Pouvez-vous donner des exemples de fonctions continues?
+
+  \question Pouvez-vous donner des exemples de fonctions qui ne sont pas continues? 
+
+  \exo{Exemples de fonctions dérivables et non dérivables}{\coeur}
+  
+  \question Pouvez-vous donner des exemples de fonctions dérivables?
+
+  \question Pouvez-vous donner des exemples de fonctions qui ne sont pas dérivables? 
+
+\exo{Exemples}{\ccoeur}
+
+\question Citez 3 fonctions appartenant à $\mathscr{C}^\infty(\RR,\RR)$.
+
+\question Soit $f \in \mathscr D(\RR,\RR)$ vérifiant $\forall x \in \RR, f''(x)= 3 f'(x) + 2 f(x)$. Sans résoudre l'équation différentielle, montrer que $f \in \mathscr C^\infty(\RR,\RR)$.
+
+ \exo{Calculs de dérivée nième}{\trefle}
+\question
+Calculer la dérivée $n$ième des fonctions $\exp$, $\cos$, $\sin$.
+
+\question
+Soit $m\in\ZZ$. Calculer la dérivée $n$ième de $x^m$.
+
+\exo{Circuit RC}{\coeur}
+
+Soit un circuit RC classique avec générateur de tension E. 
+
+\question Dessinez le circuit
+
+\question Montrer que la tension au borne de la résistance vérifie l'équation différentielle suivante $$ \frac{ \d u_c}{\d t} + \frac{1}{RC}u_c = E $$
+
+\question Donner la forme générale des solutions de ce type d'équation différentielle.
+
+\question Justifier la continuité de la tension aux bornes du condensateur. Utiliser cette condition pour trouver $u_c$.
+
+\question Calculer l'intensité $i$ aux bornes du condensateur. Etudier sa régularité. Justifier physiquement. 
+
+
+
+\exo{Chute libre}{\coeur}
+
+Soit une pomme tombant par terre. Modéliser sa chute en négligeant les frottements. 
+
+Sachant qu'elle a une vitesse initiale nulle et qu'elle tombe d'une hauteur de deux mètres, donner l'expression de sa trajectoire en fonction du temps. 
+
+
+\exo{Raccord}{\coeur}
+
+Soit $a,b\in\RR$. On définit $f:\RR^+\to\RR$ par $f(x)=\sqrt x$ si $0\leq x\leq 1$ et $f(x)=ax^2+bx+1$ si $x>1$.
+
+\question Démontrer que $f$ est continue si et seulement si $a+b=0$.
+
+\question Déterminer $a$ et $b$ pour que $f$ soit de classe $\mathcal C^1$ sur $\RR^+_*$ ; expliciter alors $f'$.
+
+
+\exo{Etude de  $x \to x^2\sin(\frac{1}{x})$ }{\trefle}
+
+Soit $f:\RR\to\RR$ définie par $f(x)=x^2\sin(\frac 1x)$ pour $x\neq 0$, et $f(0)=0$. 
+
+\question Démontrer que $f$ est dérivable mais n'est pas de classe $\mathcal C^1$.
+
+%\question Démontrer que $f$ admet un développement limité d'ordre 2 en $0$ : autrement dit, il existe $a,b,c$ des réels, et une fonction $\eps:\RR\to\RR$ telle que $f(x)=a+bx+cx^2+\eps(x)$, avec $\displaystyle \lim_{x\to 0}\eps(x)=0$.
+
+\exo{Etude de $x+x^3\sin(\frac{1}{x^2})$}{\trefle}
+
+Soit $f:\RR\to\RR$ définie par $f(x)=x+x^3\sin(\frac{1}{x^2})$ pour $x\neq 0$, et $f(0)=0$.
+
+\question Démontrer que $f$ et continue puis dérivable sur $\RR^*$. Calculer $f'$.
+
+\question Vérifier que $f$ est également dérivable en $0$, mais que $f'$ n'est pas continue en $0$. 
+
+
+\question En déduire que $f'$ n'admet pas de développement limité (à aucun ordre) en $0$.
+
+\question Vérifier par contre que $f$ admet un développement limité d'ordre 2 en $0$. (On pourra poser $\eps(x)=x\sin(\frac{1}{x^2})$).
+
+\exo{Etude de $x^3 \sin(1/x)$}{\trefle}
+
+\question Soit $n\geq 1$. Calculer $\lim\limits_{x\to 0} x^n\sin(1/x)$ et  $\lim_{x\to 0} x^n\cos(1/x)$.
+
+On note $f$ la fonction définie sur $\RR$ par
+$$f(x)=\begin{cases}
+x^3\sin(1/x) \textrm{ si } x\neq 0\\
+0 \textrm{ sinon. }
+\end{cases}$$
+
+\question Sur un graphique, tracer rapidement l'allure des fonctions $x\mapsto x^3$, $x\mapsto -x^3$, et $f$.
+
+\question La fonction $f$ est-elle continue ?
+
+\question Calculer la dérivée de $f$ sur $\RR^*$. La fonction $f$ est-elle dérivable sur $\RR$ ? Est-elle de classe $\mathscr C^1$ sur $\RR$ ?
+
+\question Démontrer que $f$ n'est pas deux fois dérivable sur $\RR$. \textit{On admettra que la fonction $x\mapsto \cos(1/x)$ n'admet pas de limite lorsque $x$ tend vers 0}
+
+\question Démontrer par contre que l'on peut écrire $f(x)=x^2\eps(x)$, avec $\lim\limits_{x\to 0} \eps(x)=0$. \textit{On dit que $f$ admet un développement limité d'ordre 2.}
+
+
+\exo{Raccord entre exponentielle et la fonction nulle}{\trefle}
+
+Soit $f$ la fonction définie sur $\RR$ par 
+$$f(x)=\begin{cases}
+0 \textrm{ si } x\leq 0\\
+e^{-1/x} \textrm{ si } x> 0.
+\end{cases}$$
+
+
+\question Démontrer que $f$ est continue. Donner la limite de $f$ en $+\infty$.
+
+\question Pour tout $n\geq 1$, calculer la limite $\lim\limits_{\substack{x\to 0\\x>0}} \frac{e^{-1/x}}{x^n}$. Plus généralement, si $P$ est un polynôme, calculer la limite $\lim\limits_{\substack{x\to 0\\x>0}} P(x) \frac{e^{-1/x}}{x^n}$.
+
+\question En déduire que $f$ est dérivable en tout point. Donner sa dérivée (en précisant en particulier $f'(0)$). Montrer que f est de classe $\mathscr C^1$ sur $\RR$.
+
+\question Démontrer que $f$ est deux fois dérivables, et que sa dérivée seconde est donnée par 
+$$f''(x)=\begin{cases}
+0 \textrm{ si } x\leq 0\\
+\frac{-2x+1}{x^4}e^{-1/x} \textrm{ si } x> 0.
+\end{cases}$$
+
+\question Soit $n\geq 0$.
+
+\squestion Soit $P$ un polynôme \footnote{C'est-à-dire une fonction de la forme $P(x)=a_0+a_1x+a_2x^2+a_3x^3+\dots +a_nx^n$ }. Calculer en fonction de $P'$ la dérivée de la fonction $x\mapsto \frac{P(x)}{x^{2n}}e^{-1/x}$.
+
+\squestion Démontrer par récurrence que $f$ est $n$ fois dérivable, et que sa dérivée $n$-ième est de la forme
+
+$$f^{(n)}(x)=\begin{cases}
+0 \textrm{ si } x\leq 0\\
+\frac{P_n(x)}{x^{2n}}e^{-1/x} \textrm{ si } x> 0,
+\end{cases}$$
+où $P_n$ est un polynôme (dépendant de $n$).
+
+\question Donner le développement limité à l'ordre $n$ de la fonction $f$ au voisinage de $0$.
+
+
+\exo{Synthèse}{\trefle}
+
+Ecrivez la méthode à suivre pour étudier la régularité d'une fonction. 
+
+\exo{Comparaison de termes petits et grands}{\ccoeur}
+
+\question Classer les termes suivants du plus grand au plus petit quand $x \rightarrow 0$ : $1, x, x^2,x^3, x^5,x^{18}, \frac{1}{x},\frac{1}{x^3}, x^{-2}, x^{-18} $.
+
+\question Classer les termes suivants du plus grand au plus petit quand $x \rightarrow +\infty $ : $1, x, x^2,x^3, x^5,x^{18}, \frac{1}{x},\frac{1}{x^3}, x^{-2}, x^{-18} $.
+
+\exo{dls de polynomes}{\ccoeur}
+
+Quel est le développement limité en 0 à l'ordre 3 des polynomes suivants?
+
+\begin{enumerate}
+\item $P(x) = 3x^5 + 4x^2+ 5x + 1$
+\item $P(x) = 14x^3+ 2x + 5$
+\item $P(x) = 12x^{13}+ 7x^8 + 5x^5$
+\end{enumerate}
+
+\exo{Comparaison de termes négligeables}{\ccoeur}
+
+Pouvez-vous simplifier les expressions suivantes? 
+Les fonctions du type $x \to \eps(x)$ sont toutes des fonctions qui tendent vers 0 quand x tend vers 0.
+
+\begin{enumerate}
+\item $f(x)= 3 x^5 \eps(x)$
+\item $f(x) = x^2 \eps(x) + 3 x^5 \eps(x)$
+\item $P(x) = x^2 \eps(x) + x^2 \eps(x)$
+\end{enumerate}
+
+\exo{Approximation d'une racine}{\coeur}
+
+Supposons que vous n'ayez pas de calculatrice et que vous ayez à calculer $\sqrt{1,002}$. Donnez une valeur approchée du résultat en utilisant un DL d'ordre $1$. Comparez au résultat de votre calculatrice.
+
+
+ \exo{Parité}{\trefle}
+
+ Soit $f:I\to \RR$ une fonction  admettant un développement limité en 0, où $I$ est un intervalle de $\RR$ centré en $0$.
+
+ Autrement dit, il existe
+ $(a_0,a_1,a_2,.. , a_n)\in \RR^{n+1}$ et $\epsilon : I \rightarrow \RR$ tels que
+ $$f(x) = a_0 + a_1 x+ a_2 x^2 +  a_3 x^3 +... + a_n x^n + \epsilon(x) x^n$$ avec $\displaystyle\lim_{x\to 0} \epsilon(x)= 0$
+
+ \question On suppose que $f$ est impaire.
+
+ \squestion Expliquer pourquoi $f(0)=0$.
+
+ \squestion Montrer que les coefficients pairs du développement limité de $f$ en 0 sont nuls, ie que $a_0, a_2, a_4...$ sont nuls. 
+
+ \question On suppose maintenant que $f$ est impaire.
+ Montrer que les coefficients impairs du développement limité de $f$ en 0 sont nuls, ie que $a_1, a_3, a_5...$ sont nuls. 
+
+
+\exo{Produits de développements limités}{\coeur}
+
+Donnez le développement limité à l'ordre 2 des fonctions définies par :
+\begin{enumerate}
+\item $ (x+ x^3) (1+x^2)$
+\item $ x cos(x) $
+\item $ sin(x) \ln(1+x) $
+\end{enumerate}
+
+
+\exo{Produits de développements limités}{\coeur}
+
+Donnez le développement limité en 0 à l'ordre 2 des fonctions définies par :
+\begin{enumerate}
+\item $ \cos(2x)$
+\item $ \frac{1}{\sqrt{1+x^2}} $
+\item $ \frac{1}{\sqrt{2+x^2}} $
+\end{enumerate}
+
+
+
+\exo{Les indispensables}{\ccoeur}
+
+Redonner les développements limités en 0 des fonctins usuelles à l'ordre n. 
+\begin{enumerate}[a)]
+
+\item $\exp x$
+\item $\cos(x)$
+\item $\sin(x)$
+\item $\frac{1}{1+x}$
+\item $\ln(1+x)$
+\item $e^x$
+\item $\sqrt{1+x}$
+\item $(1+x)^\alpha$, pour $\alpha \in \RR$
+\item $P(x) = 3x^3+2x+\pi x^2 -1$
+
+\end{enumerate}
+
+\exo{}{\coeur}
+Déterminer les développements limités en $0$ à l'ordre indiqué des fonctions suivantes.
+
+\begin{multicols}{2}
+\begin{enumerate}[a)]
+\item $\ln(\cos(x))$, ordre $2$
+\item $\cos(x)\exp(x)$, ordre $3$
+\item $\sqrt{1+6x}$, ordre $3$
+\item $(\ln(1+x))^2$, ordre $4$
+\item $\frac{\cos(x)-1}{x}$, ordre 3
+\item $\frac{1+x}{e^x}$, ordre $3$
+\item $\frac{x}{1+x+x^2}$, ordre $3$
+\item $\frac{1}{\cos(x)}$, ordre $4$
+\end{enumerate}
+\end{multicols}
+
+\exo{DIY}{\coeur}
+Si vous ne vous sentez pas suffisamment à l'aise avec les calculs de développements limités de l'exercice précédent, faites votre exercice vous-même : prenez une formule avec des fonctions usuelles, et calculez le développement limité en $0$ à l'ordre 3 par exemple. Vous pouvez vérifier le résultat par exemple sur \texttt{http://www.wolframalpha.com/} grâce à la commande \texttt{taylor} (ou sur votre calculatrice si elle est suffisamment perfectionnée).
+
+\begin{enumerate}
+\item $ \cos(2x)$
+\item $ \frac{1}{\sqrt{1+x^2}} $
+\item $ \frac{1}{\sqrt{2+x^2}} $
+\end{enumerate}
+
+
+\exo{Dls de Polynomes}{\coeur}
+
+\question Donner avec un minimum de calculs les développements limités en $0$ à l'ordre $3$ de
+\begin{multicols}{3}
+\begin{enumerate}[a)]
+\item $x^4+2x^3+3x^2+x+1$
+\item $(x^2+1)^2+x^{17}$
+\item $(x+1)^4$.
+\end{enumerate}
+\end{multicols}
+
+\question Donner avec un minimum de calculs les développements limités en $1$ à l'ordre $3$ de
+
+\begin{multicols}{3}
+\begin{enumerate}[a)]
+\item $x^3+3x^2+4x+1$
+\item $2x+(x-1)^{42}$
+\item $x^4$
+\end{enumerate}
+\end{multicols}
+
+
+\exo{Composition de dls}{\trefle}
+
+Déterminer les développements limités en $0$ à l'ordre indiqué des fonctions suivantes.
+
+\begin{multicols}{2}
+\begin{enumerate}[a)]
+\item $(1+x)^{\frac{1}{1+x}}$, ordre $3$
+\item $(\cos(x))^{\sin(x)}$, ordre 5
+\item $\sqrt{a+\sqrt{b+x}}$, ordre 1 ($a,b$ des réels strictement positifs fixés)
+\item $\frac{\ln(1+x)}{1+x}$, ordre 4
+\item $\ln\left(\sum_{k=0}^{99} \frac{x^k}{k!} \right)$, ordre 100
+\end{enumerate}
+\end{multicols}
+
+\exo{calculs de limites}{\coeur}
+
+Calculer les limites en $+\infty$ des expressions suivantes : 
+
+\begin{enumerate}[a)]
+\item $(1+\frac{1}{x})^x$
+\item $(1-\frac{1}{x})^x$
+\end{enumerate}
+
+
+
+\exo{}{\coeur}
+Déterminer les développements limités suivants à l'ordre $3$ :
+
+\begin{multicols}{2}
+\begin{enumerate}[a)]
+\item $\sqrt x$, au voisinage de $2$
+\item $\sin(x)$ au voisinage de $\pi/6$
+\item $e^x$ au voisinage de $1$
+\item $\ln(x)$ au voisinage de $e$.
+\end{enumerate}
+\end{multicols}
+
+
+\exo{Calculs de limites grace aux dls}{\coeur}
+Déterminer les limites en $0$ des fonctions suivantes :
+
+\begin{multicols}{2}
+\begin{enumerate}[a)]
+\item $\frac{e^{x^2}-\cos(x)}{x^2}$
+\item $\frac{\ln(1+x)-\sin(x)}{x}$
+\item $\frac{1}{x}-\frac{1}{\ln(1+x)}$
+\item $\frac{\cos(x)-\sqrt{1-x^2}}{x^4}$ 
+\end{enumerate}
+\end{multicols}
+
+\exo{Calculs de limites grace aux dls}{\trefle}
+Calculer les limites suivantes :
+\begin{multicols}{2}
+\begin{enumerate}[a)]
+\item $\lim_{x\to 1} \frac{x\ln(x)}{x^2-1}$
+\item $\lim_{x\to3/2} \frac{\cos(\pi x)}{4x^2-9}$
+\item $\lim_{x\to+\infty} \sqrt{x^2+3x+2}+x$
+\item $\lim_{x\to-\infty} \sqrt{x^2+3x+2}+x$
+\item $\lim_{x\to \pi/2} \sin(x)^{\tan(x)}$
+\end{enumerate}
+\end{multicols}
+
+\exo{Dl de tangente}{\trefle}
+Soit $f:\RR\to\RR$ définie par $f(x)=\frac{x^4}{1+x^6}$. Déterminer $f^{(n)}(0)$.
+
+\exo{DL de tan(x)}{\trefle}
+
+\question En utilisant  $\tan(x)=\sin(x)/\cos(x)$, retrouver le développement de $\tan$ à l'ordre 3. 
+
+
+\question Redémontrer la formule $\tan'(x)=1+\tan^2(x)$.
+
+
+\question Justifier pourquoi la fonction $\tan$ et sa dérivée de $\tan$ admettent un DL à n'importe quel ordre en $0$. Quel est le lien entre ces deux DL ? 
+
+\question Justifier que l'on peut écrire $\tan(x)=ax+x\varepsilon(x)$. En utilisant la relation de la question (2), en déduire $a$. 
+
+\question Expliquer ensuite pourquoi l'on a $\tan(x)=ax+bx^3+x^3\varepsilon(x)$ pour un certain $b$. Calculer $b$ avec la même méthode.
+
+\question Faire de même pour obtenir le DL de $\tan$ à l'ordre 5, puis à l'ordre 7 si vous avez du courage.
+
+\exo{Modélisation en optique}{\ttrefle}
+
+On étudie l'image d'un objet à travers une lentille convergente. 
+
+\includegraphics[scale=1]{optique.png}
+
+Supposons que l'on bouge la lentille A d'une longueur $l\ll OA$. 
+Comment va varier la distance $OA'$ entre la lentille et l'image? 
+Faire un dévelopement limité de l'expression à l'ordre 3. 
+
+
+
+
+
+\end{document}
