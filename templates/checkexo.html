@@ -1,0 +1,33 @@
+
+
+<h1>You are so good!</h1>
+</br>
+
+<!--
+{% for id in qid %}
+{{loop.index}}  your note for question {{id}} is  {% if notes[id]=='1.0000000' %}1{% else %}0{% endif %}  </br>
+{% endfor %}
+-->
+ 
+
+{% for question in questions %}
+<p>
+{% if notes[qid[loop.index0]]=='1.0000000'%}
+{{loop.index}}.<font color="green">  your note for question {{question[0][0]}} is  {% if notes[qid[loop.index0]]=='1.0000000' %}1 you are right{% else %}0 you are wrong{% endif %}  </br></font>
+{% else %}
+{{loop.index}}.<font color="red">  your note for question {{question[0][0]}} is  {% if notes[qid[loop.index0]]=='1.0000000' %}1 you are right{% else %}0 you are wrong{% endif %}  </br></font>
+{% endif %}
+<!--The question id is : {{question[0][0]}}</br>-->
+The question text is : {{question[0][1]}}</br>
+A.{{question[0][2]}}    {% if question[0][3]==1 %} this is the correct answer!{% endif %}</br>
+B.{{question[1][2]}}    {% if question[1][3]==1.0000000 %} this is the correct answer!{% endif %}</br>
+C.{{question[2][2]}}    {% if question[2][3]==1.0000000 %} this is the correct answer!{% endif %}</br>
+D.{{question[3][2]}}    {% if question[3][3]==1.0000000 %} this is the correct answer!{% endif %}</br>
+</p>
+
+{% endfor %}
+
+
+<br>
+<a href="{{ url_for('userinformation') }}">go to information page</a>
+<br>

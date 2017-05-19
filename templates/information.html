@@ -1,0 +1,37 @@
+<!doctype html>
+<title>Élèves participants au cours</title>
+<h2>This page shows user's information</h2>
+
+<h3>Hello {{userinfo[0][0]}} {{userinfo[0][1]}} ! Your email address is {{userinfo[0][2]}}</h3>
+
+<h4>You have already enrol course</h4>
+<p>enrol id number are
+{% for mot in enrolinfo :%}
+<b>{{mot[0]}}</b>
+{% endfor %}
+</p>
+<h4>You have enrol the below courses</h4>
+
+<p>
+{% for mot in courseinfo :%}
+The course id is <b>{{mot[0][0]}}</b> and the course full name is <b>{{mot[0][1]}}</b>
+<form action="{{ url_for('do_exo')}}" method='POST'>
+    {{form_doexo.hidden_tag()}}
+    {{ form_doexo.gotoexo() }}
+    <input type="hidden"  name="courseid" value = {{mot[0][0]}} >
+</form>
+</br>
+{% endfor %}
+</p>
+
+<p>
+{% for mot in quizinfo :%}
+You have done the quiz : <b>{{mot[0]}}</b> and your score is <b>{{mot[2]}}/{{mot[1]}}</b> !</br>
+{% endfor %}
+</p>
+
+</br>
+
+<br>
+<a href="{{ url_for('userinformation') }}">refresh</a>
+<br>

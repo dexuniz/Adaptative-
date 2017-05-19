@@ -1,0 +1,11 @@
+<!doctype html>
+<title>Élèves participants au cours</title>
+<h2>Identifiant du cours dont vous provenez</h2>
+<h1>
+<ul>
+<li>enrolid courseid coursefullname quizname note</li>
+{% for mot in results :%}
+<li>{{ mot[0] }}    {{mot[1]}}  {{mot[2]}}  {{mot[3]}}  {{mot[5]}}/{{mot[4]}}</li>
+{% endfor %}
+</ul>
+</h1>

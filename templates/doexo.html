@@ -1,0 +1,47 @@
+<!doctype html>
+<h1>Hello</h1>
+<p>
+This is course(id) : {{courseid}}</br>
+You are user(id) : {{lti.user_id}}</br>
+Your role id is {{user_role[0][0]}}, and you are
+{% if user_role[0][0] == 3 %}
+    teacher !
+{% elif user_role[0][0]==1 %}
+    manager !
+{% else %}
+    student !
+{% endif %}
+</p>
+
+<h1>Let's do exercises!</h1>
+
+
+<form action="{{ url_for('check_exo')}}" method='POST'>
+{% for i in label %}
+    {% if loop.index0%4==0 %}
+        <p>
+The question id is : {{questions[loop.index0][0]}}</br>
+The question text is : {{questions[loop.index0][1]}}</br>
+<input type = "radio" name = {{questions[loop.index0][0]}} value = {{questions[loop.index0][3]}} />A.{{questions[loop.index0][2]}}</br>
+<input type = "radio" name = {{questions[loop.index0][0]}} value = {{questions[loop.index0+1][3]}} />B.{{questions[loop.index0+1][2]}}</br>
+<input type = "radio" name = {{questions[loop.index0][0]}} value = {{questions[loop.index0+2][3]}} />C.{{questions[loop.index0+2][2]}}</br>
+<input type = "radio" name = {{questions[loop.index0][0]}} value = {{questions[loop.index0+3][3]}} />D.{{questions[loop.index0+3][2]}}</br>
+
+<input type="hidden"  name= {{loop.index0/4}} value = {{questions[loop.index0][0]}} />
+
+
+        </p>
+    {% endif %}
+{% endfor %}
+
+
+
+    {{ form_checkexo.hidden_tag()}}
+    {{ form_checkexo.submit() }}
+</form>
+
+
+
+<br>
+<a href="{{ url_for('userinformation') }}">go to information page</a>
+<br>
